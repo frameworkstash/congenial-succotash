@@ -15,7 +15,7 @@ const Navbar = () => (
         <Header as="h3" color="orange">
           <Icon name='code' />
           <Header.Content>
-            Frameworkstash
+            Framework Stash
             <Header.Subheader >
               Directory of tutorials for all levels
             </Header.Subheader>
@@ -27,12 +27,13 @@ const Navbar = () => (
         <Menu.Item>
           <Dropdown basic pointing="top right" text="More">
             <Dropdown.Menu>
-              <Dropdown.Item>Ask</Dropdown.Item>
-              <Dropdown.Item>Projects</Dropdown.Item>
-              <Dropdown.Item>News</Dropdown.Item>
-              <Dropdown.Item>Jobs</Dropdown.Item>
+              <Dropdown.Item>ASK</Dropdown.Item>
+              <Dropdown.Item>SHOWCASE</Dropdown.Item>
+              <Dropdown.Item>NEWS</Dropdown.Item>
+              <Dropdown.Item>JOBS</Dropdown.Item>
+              <Dropdown.Item>NEWSLETTER</Dropdown.Item>
               <Dropdown.Divider />
-              <Dropdown.Item>About</Dropdown.Item>
+              <Dropdown.Item>ABOUT</Dropdown.Item>
               <Dropdown.Item>FAQ</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>

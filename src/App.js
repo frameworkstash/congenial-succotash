@@ -1,8 +1,13 @@
 import React from 'react'
 import Navbar from './components/Navbar'
+import Welcome from './components/Segment'
 
 const App = () => (
-  <Navbar />
+  <div>
+    <Navbar />
+
+    <Welcome />
+  </div>
 )
 
 export default App
