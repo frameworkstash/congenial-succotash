@@ -9,7 +9,7 @@ import {
  } from 'semantic-ui-react'
 
 const Navbar = () => (
-  <Menu attached secondary size="small">
+  <Menu attached borderless size="tiny">
     <Container>
       <Menu.Item header fitted="horizontally">
         <Header as="h3" color="orange">
@@ -23,7 +23,7 @@ const Navbar = () => (
         </Header>
       </Menu.Item>
 
-      <Menu.Menu position='right'>
+      <Menu.Menu position="right">
         <Menu.Item>
           <Dropdown basic pointing="top right" text="More">
             <Dropdown.Menu>
@@ -38,17 +38,20 @@ const Navbar = () => (
             </Dropdown.Menu>
           </Dropdown>
         </Menu.Item>
+
         <Menu.Item>
           <Button compact>
             Log In
           </Button>
         </Menu.Item>
+
         <Menu.Item>
           <Button color="orange" compact>
             Sign Up
           </Button>
         </Menu.Item>
       </Menu.Menu>
+
     </Container>
   </Menu>
 )
