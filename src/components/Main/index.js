@@ -1,5 +1,6 @@
 import React from 'react'
 import Navigation from '../Navigation'
+import PrimaryContent from '../PrimaryContent'
 import {
   Container,
   Grid,
@@ -14,7 +15,7 @@ const Main = () => (
           <Navigation />
         </Grid.Column>
         <Grid.Column width={8}>
-          <Segment>2</Segment>
+          <PrimaryContent />
         </Grid.Column>
         <Grid.Column>
           <Segment>3</Segment>
