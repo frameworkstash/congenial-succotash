@@ -27,7 +27,7 @@ const PrimaryContent = () => (
                 trigger={<span>+ 1</span>}
                 content={<Label>Label</Label>}
                 on="click"
-                position="center right"
+                position="right center"
               />
               <Button basic icon compact size="tiny" floated="right">
                 <Icon name="comments" />
