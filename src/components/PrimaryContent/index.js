@@ -42,7 +42,195 @@ const PrimaryContent = () => (
         </Item>
       </Item.Group>
     </Segment>
-
+    <Segment attached>
+      <Item.Group link unstackable>
+        <Item>
+          <Item.Content>
+            <Item.Header>Header</Item.Header>
+            <Item.Meta>Description</Item.Meta>
+            <Item.Extra>
+              <Label>Label</Label>
+              <Button basic icon compact size="tiny" floated="right">
+                <Icon name="comments" />
+                10
+              </Button>
+              <Button basic icon compact size="tiny" floated="right">
+                <Icon name="like" />
+                389
+              </Button>
+            </Item.Extra>
+          </Item.Content>
+        </Item>
+      </Item.Group>
+    </Segment>
+    <Segment attached>
+      <Item.Group link unstackable>
+        <Item>
+          <Item.Content>
+            <Item.Header>Header</Item.Header>
+            <Item.Meta>Description</Item.Meta>
+            <Item.Extra>
+              <Label>Label</Label>
+              <Button basic icon compact size="tiny" floated="right">
+                <Icon name="comments" />
+                10
+              </Button>
+              <Button basic icon compact size="tiny" floated="right">
+                <Icon name="like" />
+                389
+              </Button>
+            </Item.Extra>
+          </Item.Content>
+        </Item>
+      </Item.Group>
+    </Segment>
+    <Segment attached>
+      <Item.Group link unstackable>
+        <Item>
+          <Item.Content>
+            <Item.Header>Header</Item.Header>
+            <Item.Meta>Description</Item.Meta>
+            <Item.Extra>
+              <Label>Label</Label>
+              <Button basic icon compact size="tiny" floated="right">
+                <Icon name="comments" />
+                10
+              </Button>
+              <Button basic icon compact size="tiny" floated="right">
+                <Icon name="like" />
+                389
+              </Button>
+            </Item.Extra>
+          </Item.Content>
+        </Item>
+      </Item.Group>
+    </Segment>
+    <Segment attached>
+      <Item.Group link unstackable>
+        <Item>
+          <Item.Content>
+            <Item.Header>Header</Item.Header>
+            <Item.Meta>Description</Item.Meta>
+            <Item.Extra>
+              <Label>Label</Label>
+              <Button basic icon compact size="tiny" floated="right">
+                <Icon name="comments" />
+                10
+              </Button>
+              <Button basic icon compact size="tiny" floated="right">
+                <Icon name="like" />
+                389
+              </Button>
+            </Item.Extra>
+          </Item.Content>
+        </Item>
+      </Item.Group>
+    </Segment>
+    <Segment attached>
+      <Item.Group link unstackable>
+        <Item>
+          <Item.Content>
+            <Item.Header>Header</Item.Header>
+            <Item.Meta>Description</Item.Meta>
+            <Item.Extra>
+              <Label>Label</Label>
+              <Button basic icon compact size="tiny" floated="right">
+                <Icon name="comments" />
+                10
+              </Button>
+              <Button basic icon compact size="tiny" floated="right">
+                <Icon name="like" />
+                389
+              </Button>
+            </Item.Extra>
+          </Item.Content>
+        </Item>
+      </Item.Group>
+    </Segment>
+    <Segment attached>
+      <Item.Group link unstackable>
+        <Item>
+          <Item.Content>
+            <Item.Header>Header</Item.Header>
+            <Item.Meta>Description</Item.Meta>
+            <Item.Extra>
+              <Label>Label</Label>
+              <Button basic icon compact size="tiny" floated="right">
+                <Icon name="comments" />
+                10
+              </Button>
+              <Button basic icon compact size="tiny" floated="right">
+                <Icon name="like" />
+                389
+              </Button>
+            </Item.Extra>
+          </Item.Content>
+        </Item>
+      </Item.Group>
+    </Segment>
+    <Segment attached>
+      <Item.Group link unstackable>
+        <Item>
+          <Item.Content>
+            <Item.Header>Header</Item.Header>
+            <Item.Meta>Description</Item.Meta>
+            <Item.Extra>
+              <Label>Label</Label>
+              <Button basic icon compact size="tiny" floated="right">
+                <Icon name="comments" />
+                10
+              </Button>
+              <Button basic icon compact size="tiny" floated="right">
+                <Icon name="like" />
+                389
+              </Button>
+            </Item.Extra>
+          </Item.Content>
+        </Item>
+      </Item.Group>
+    </Segment>
+    <Segment attached>
+      <Item.Group link unstackable>
+        <Item>
+          <Item.Content>
+            <Item.Header>Header</Item.Header>
+            <Item.Meta>Description</Item.Meta>
+            <Item.Extra>
+              <Label>Label</Label>
+              <Button basic icon compact size="tiny" floated="right">
+                <Icon name="comments" />
+                10
+              </Button>
+              <Button basic icon compact size="tiny" floated="right">
+                <Icon name="like" />
+                389
+              </Button>
+            </Item.Extra>
+          </Item.Content>
+        </Item>
+      </Item.Group>
+    </Segment>
+    <Segment attached>
+      <Item.Group link unstackable>
+        <Item>
+          <Item.Content>
+            <Item.Header>Header</Item.Header>
+            <Item.Meta>Description</Item.Meta>
+            <Item.Extra>
+              <Label>Label</Label>
+              <Button basic icon compact size="tiny" floated="right">
+                <Icon name="comments" />
+                10
+              </Button>
+              <Button basic icon compact size="tiny" floated="right">
+                <Icon name="like" />
+                389
+              </Button>
+            </Item.Extra>
+          </Item.Content>
+        </Item>
+      </Item.Group>
+    </Segment>
 
     <Button basic icon attached="bottom">
       <Icon name="angle down" />
