@@ -3,17 +3,20 @@ import {
   Advertisement,
   Dropdown,
   Grid,
+  Header,
   Icon,
   Menu,
-  Segment
+  Segment,
+  Sticky
 } from 'semantic-ui-react'
 
-const SecondaryContent = () => (
-  <div>
+const SecondaryContent = (props) => (
+  <Sticky context={props.contextRef}>
     <Segment compact>
+      <Header as="h6" color="grey">
+        SPONSORED
+      </Header>
       <Advertisement unit='medium rectangle' test='Ad Unit 1' />
-      <br />
-      <Advertisement unit='medium rectangle' test='Ad Unit 2' />
     </Segment>
 
     <Segment basic padded>
@@ -39,7 +42,7 @@ const SecondaryContent = () => (
         </Grid>
       </Menu>
     </Segment>
-  </div>
+  </Sticky>
 )
 
 export default SecondaryContent
