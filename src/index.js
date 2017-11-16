@@ -7,8 +7,5 @@ import 'semantic-ui-css/semantic.min.css';
 
 import registerServiceWorker from './registerServiceWorker';
 
-render(
-  <App />,
-  document.getElementById('root')
-)
+render(<App />, document.getElementById('root'));
 registerServiceWorker();
