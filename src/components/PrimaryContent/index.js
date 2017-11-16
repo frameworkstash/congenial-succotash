@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   Button,
   Header,
@@ -7,11 +7,11 @@ import {
   Label,
   Popup,
   Segment
-} from 'semantic-ui-react'
+} from 'semantic-ui-react';
 
 const PrimaryContent = () => (
   <Segment.Group stacked>
-    <Header as='h2' attached="top">
+    <Header as="h2" attached="top">
       Today
     </Header>
 
@@ -234,9 +234,9 @@ const PrimaryContent = () => (
 
     <Button basic icon attached="bottom">
       <Icon name="angle down" />
-        SHOW 15 MORE
+      SHOW 15 MORE
     </Button>
   </Segment.Group>
-)
+);
 
-export default PrimaryContent
+export default PrimaryContent;

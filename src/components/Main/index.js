@@ -1,25 +1,22 @@
-import React, { Component } from 'react'
-import Navigation from '../Navigation'
-import PrimaryContent from '../PrimaryContent'
-import SecondaryContent from '../SecondaryContent'
-import {
-  Container,
-  Grid
-} from 'semantic-ui-react'
+import React, { Component } from 'react';
+import Navigation from '../Navigation';
+import PrimaryContent from '../PrimaryContent';
+import SecondaryContent from '../SecondaryContent';
+import { Container, Grid } from 'semantic-ui-react';
 
 class Main extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.state = {}
+    this.state = {};
   }
 
-  handleContextRef = contextRef => this.setState({ contextRef })
+  handleContextRef = contextRef => this.setState({ contextRef });
 
   render() {
-    const { contextRef } = this.state
+    const { contextRef } = this.state;
 
-    return(
+    return (
       <Container>
         <div ref={this.handleContextRef}>
           <Grid padded="vertically">
@@ -37,8 +34,8 @@ class Main extends Component {
           </Grid>
         </div>
       </Container>
-    )
+    );
   }
 }
 
-export default Main
+export default Main;

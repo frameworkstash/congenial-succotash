@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import LogInModal from '../LogInModal'
+import React, { Component } from 'react';
+import LogInModal from '../LogInModal';
 import {
   Button,
   Container,
@@ -7,33 +7,33 @@ import {
   Header,
   Icon,
   Menu
- } from 'semantic-ui-react'
+} from 'semantic-ui-react';
 
 class Navbar extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       open: false
-    }
+    };
   }
 
-  open = () => this.setState({ open: true })
-  close = () => this.setState({ open: false })
+  open = () => this.setState({ open: true });
+  close = () => this.setState({ open: false });
 
   render() {
-    const { open } = this.state
+    const { open } = this.state;
 
-    return(
+    return (
       <Menu attached borderless size="tiny">
         <LogInModal open={open} close={this.close} />
 
         <Container>
           <Menu.Item header fitted="horizontally">
             <Header as="h3" color="orange">
-              <Icon name='code' />
+              <Icon name="code" />
               <Header.Content>
                 Framework Stash
-                <Header.Subheader >
+                <Header.Subheader>
                   Directory of tutorials for all levels
                 </Header.Subheader>
               </Header.Content>
@@ -58,7 +58,7 @@ class Navbar extends Component {
             </Menu.Item>
 
             <Menu.Item>
-              <Button  onClick={this.open} compact>
+              <Button onClick={this.open} compact>
                 LOG IN
               </Button>
             </Menu.Item>
@@ -71,8 +71,8 @@ class Navbar extends Component {
           </Menu.Menu>
         </Container>
       </Menu>
-    )
+    );
   }
 }
 
-export default Navbar
+export default Navbar;
