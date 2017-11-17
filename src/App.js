@@ -1,16 +1,18 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
+
 import Navbar from './components/Navbar';
-import Welcome from './components/Segment';
-import Main from './components/Main';
+import Home from './components/Home';
 
-const App = () => (
-  <div>
-    <Navbar />
-
-    <Welcome />
-
-    <Main />
-  </div>
-);
+const App = () => {
+  return (
+    <div>
+      <Navbar />
+      <main>
+        <Route exact path="/" component={Home} />
+      </main>
+    </div>
+  );
+};
 
 export default App;
