@@ -1,64 +1,70 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { changeActiveItem } from '../../actions';
 import { Header, Icon, Menu, Segment, Sticky } from 'semantic-ui-react';
 
-class Navigation extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeItem: 'home'
-    };
-  }
+const Navigation = props => (
+  <Sticky context={props.contextRef} offset={10}>
+    <Segment vertical>
+      <Header as="h5" color="grey">
+        FEEDS
+      </Header>
+      <Menu secondary vertical fluid>
+        <Menu.Item
+          name="home"
+          active={props.activeItem === 'home'}
+          onClick={e => {
+            props.changeActiveItem(e.target.text.toLowerCase());
+          }}
+        >
+          <Icon.Group>
+            <Icon color="grey" name="home" />
+          </Icon.Group>
+          Home
+        </Menu.Item>
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+        <Menu.Item
+          name="all topics"
+          active={props.activeItem === 'all topics'}
+          onClick={e => {
+            props.changeActiveItem(e.target.text.toLowerCase());
+          }}
+        >
+          <Icon.Group>
+            <Icon color="grey" name="bars" />
+          </Icon.Group>
+          All Topics
+        </Menu.Item>
 
-  render() {
-    const { activeItem } = this.state;
+        <Menu.Item
+          color="orange"
+          name="customize your feed"
+          active={props.activeItem === 'customize your feed'}
+          onClick={e => {
+            props.changeActiveItem(e.target.text.toLowerCase());
+          }}
+        >
+          <Icon.Group>
+            <Icon color="grey" name="star" />
+          </Icon.Group>
+          Customize Your Feed
+        </Menu.Item>
+      </Menu>
+    </Segment>
+  </Sticky>
+);
 
-    return (
-      <Sticky context={this.props.contextRef} offset={10}>
-        <Segment vertical>
-          <Header as="h5" color="grey">
-            FEEDS
-          </Header>
-          <Menu secondary vertical fluid>
-            <Menu.Item
-              name="home"
-              active={activeItem === 'home'}
-              onClick={this.handleItemClick}
-            >
-              <Icon.Group>
-                <Icon color="grey" name="home" />
-              </Icon.Group>
-              Home
-            </Menu.Item>
+const mapStateToProps = state => ({
+  activeItem: state.navigation.activeItem
+});
 
-            <Menu.Item
-              name="all topics"
-              active={activeItem === 'all topics'}
-              onClick={this.handleItemClick}
-            >
-              <Icon.Group>
-                <Icon color="grey" name="bars" />
-              </Icon.Group>
-              All Topics
-            </Menu.Item>
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      changeActiveItem
+    },
+    dispatch
+  );
 
-            <Menu.Item
-              color="orange"
-              name="customize your feed"
-              active={activeItem === 'customize your feed'}
-              onClick={this.handleItemClick}
-            >
-              <Icon.Group>
-                <Icon color="grey" name="star" />
-              </Icon.Group>
-              Customize Your Feed
-            </Menu.Item>
-          </Menu>
-        </Segment>
-      </Sticky>
-    );
-  }
-}
-
-export default Navigation;
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
