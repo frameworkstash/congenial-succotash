@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { changeActiveItem } from '../../actions';
+import { changeActiveItem } from '../../actions/navigationAction';
 import { Header, Icon, Menu, Segment, Sticky } from 'semantic-ui-react';
 
 const Navigation = props => (

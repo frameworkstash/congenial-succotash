@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { openModal } from '../../actions/modalAction';
 import LogInModal from '../LogInModal';
 import {
   Button,
@@ -12,20 +15,12 @@ import {
 class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      open: false
-    };
   }
 
-  open = () => this.setState({ open: true });
-  close = () => this.setState({ open: false });
-
   render() {
-    const { open } = this.state;
-
     return (
       <Menu attached borderless size="tiny">
-        <LogInModal open={open} close={this.close} />
+        <LogInModal />
 
         <Container>
           <Menu.Item header fitted="horizontally">
@@ -58,13 +53,13 @@ class Navbar extends Component {
             </Menu.Item>
 
             <Menu.Item>
-              <Button onClick={this.open} compact>
+              <Button onClick={this.props.openModal} compact>
                 LOG IN
               </Button>
             </Menu.Item>
 
             <Menu.Item>
-              <Button color="orange" onClick={this.open} compact>
+              <Button color="orange" onClick={this.props.openModal} compact>
                 SIGN UP
               </Button>
             </Menu.Item>
@@ -75,4 +70,12 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      openModal
+    },
+    dispatch
+  );
+
+export default connect(null, mapDispatchToProps)(Navbar);
