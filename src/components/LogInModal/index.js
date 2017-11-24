@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { closeModal } from '../../actions/modalAction';
 import { Button, Grid, Header, Icon, Modal } from 'semantic-ui-react';
 
 class LogInModal extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   render() {
     return (
       <Modal
         dimmer="blurring"
         open={this.props.open}
-        onClose={this.props.close}
+        onClose={this.props.closeModal}
       >
         <Modal.Content>
           <Grid textAlign="center" columns="equal" padded stretched>
@@ -57,4 +55,16 @@ class LogInModal extends Component {
   }
 }
 
-export default LogInModal;
+const mapStateToProps = state => ({
+  open: state.modal.open
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      closeModal
+    },
+    dispatch
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogInModal);

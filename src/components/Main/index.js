@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Navigation from '../Navigation';
-import PrimaryContent from '../PrimaryContent';
+import PrimaryContent from '../../containers/PrimaryContent';
 import SecondaryContent from '../SecondaryContent';
 import { Container, Grid } from 'semantic-ui-react';
 
