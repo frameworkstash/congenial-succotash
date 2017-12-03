@@ -1,8 +1,14 @@
-import { REQUEST_POSTS, RECEIVE_POSTS } from '../constants/actionTypes';
+import {
+  REQUEST_POSTS,
+  RECEIVE_POSTS,
+  REQUEST_INDIVIDUAL_POST,
+  RECEIVE_INDIVIDUAL_POST
+} from '../constants/actionTypes';
 
 const initialState = {
   isFetching: false,
-  items: []
+  items: [],
+  item: []
 };
 
 export default (state = initialState, action) => {
@@ -19,20 +25,19 @@ export default (state = initialState, action) => {
         lastUpdated: action.receivedAt,
         items: action.posts
       };
+    case REQUEST_INDIVIDUAL_POST:
+      return {
+        ...state,
+        isFetching: !state.isFetching
+      };
+    case RECEIVE_INDIVIDUAL_POST:
+      return {
+        ...state,
+        isFetching: !state.isFetching,
+        lastUpdated: action.receivedAt,
+        item: action.post
+      };
     default:
       return state;
   }
 };
-
-// export const postsByActiveItem = (state = {}, action) => {
-//   switch (action.type) {
-//     case RECEIVE_POSTS:
-//     case REQUEST_POSTS:
-//       return {
-//         ...state,
-//         [action.post]: posts(state[action.post], action)
-//       }
-//     default:
-//       return state
-//   }
-// }

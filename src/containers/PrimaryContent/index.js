@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../../actions/postsAction';
+import { fetchPosts, fetchPost } from '../../actions/postsAction';
+import { openModal } from '../../actions/modalAction';
 import PostCard from '../../components/PostCard';
 import { Button, Header, Icon, Segment } from 'semantic-ui-react';
 
 class PrimaryContent extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     const { dispatch, activeItem } = this.props;
     dispatch(fetchPosts(activeItem));
   }
+
+  openModal = id => e => {
+    e.preventDefault();
+    const { dispatch } = this.props;
+
+    dispatch(fetchPost(id));
+    dispatch(openModal('MODAL_TYPE_POST'));
+  };
 
   render() {
     const { posts } = this.props;
@@ -26,26 +31,30 @@ class PrimaryContent extends Component {
     }
 
     return (
-      <Segment.Group stacked>
-        <Header as="h2" attached="top">
-          Today
-        </Header>
-        {posts.map(post => {
-          return (
-            <PostCard
-              key={post.id}
-              title={post.attributes.title}
-              description={post.attributes.description}
-              totalComments={post.total_comments}
-              totalLikes={post.total_likes}
-            />
-          );
-        })}
-        <Button basic icon attached="bottom">
-          <Icon name="angle down" />
-          SHOW 15 MORE
-        </Button>
-      </Segment.Group>
+      <div>
+        <Segment.Group>
+          <Header as="h2" attached="top">
+            Today
+          </Header>
+          {posts.map(post => {
+            return (
+              <PostCard
+                key={post.id}
+                id={post.id}
+                title={post.attributes.title}
+                description={post.attributes.description}
+                totalComments={post.total_comments}
+                totalLikes={post.total_likes}
+                openModal={this.openModal}
+              />
+            );
+          })}
+          <Button basic icon attached="bottom">
+            <Icon name="angle down" />
+            SHOW 15 MORE
+          </Button>
+        </Segment.Group>
+      </div>
     );
   }
 }
