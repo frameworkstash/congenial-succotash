@@ -17,7 +17,13 @@ const Welcome = props => (
             place for tech-loving enthusiasts to share and geek out about the
             latest Web, Mobile, AI, IoT, VR and many more articles.
           </p>
-          <Button color="orange" size="large" onClick={props.openModal}>
+          <Button
+            color="orange"
+            size="large"
+            onClick={() => {
+              props.openModal('MODAL_TYPE_LOGIN');
+            }}
+          >
             Sign Up
           </Button>
         </Grid.Column>

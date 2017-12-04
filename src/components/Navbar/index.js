@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { openModal } from '../../actions/modalAction';
-import LogInModal from '../LogInModal';
 import {
   Button,
   Container,
@@ -13,15 +12,9 @@ import {
 } from 'semantic-ui-react';
 
 class Navbar extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <Menu attached borderless size="tiny">
-        <LogInModal />
-
         <Container>
           <Menu.Item header fitted="horizontally">
             <Header as="h3" color="orange">
@@ -53,13 +46,24 @@ class Navbar extends Component {
             </Menu.Item>
 
             <Menu.Item>
-              <Button onClick={this.props.openModal} compact>
+              <Button
+                onClick={() => {
+                  this.props.openModal('MODAL_TYPE_LOGIN');
+                }}
+                compact
+              >
                 LOG IN
               </Button>
             </Menu.Item>
 
             <Menu.Item>
-              <Button color="orange" onClick={this.props.openModal} compact>
+              <Button
+                onClick={() => {
+                  this.props.openModal('MODAL_TYPE_LOGIN');
+                }}
+                color="orange"
+                compact
+              >
                 SIGN UP
               </Button>
             </Menu.Item>

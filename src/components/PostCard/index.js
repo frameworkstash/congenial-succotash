@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Icon, Item, Label, Popup, Segment } from 'semantic-ui-react';
 
 const PostCard = props => (
-  <Segment attached>
+  <Segment onClick={props.openModal(props.id)} attached>
     <Item.Group link unstackable>
       <Item>
         <Item.Content>
@@ -21,7 +21,7 @@ const PostCard = props => (
               {props.totalComments}
             </Button>
             <Button basic icon compact size="tiny" floated="right">
-              <Icon name="like" />
+              <Icon name="caret up" />
               {props.totalLikes}
             </Button>
           </Item.Extra>
