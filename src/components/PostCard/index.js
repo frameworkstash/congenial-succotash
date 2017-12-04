@@ -21,7 +21,7 @@ const PostCard = props => (
               {props.totalComments}
             </Button>
             <Button basic icon compact size="tiny" floated="right">
-              <Icon name="caret up" />
+              <Icon name="heart" />
               {props.totalLikes}
             </Button>
           </Item.Extra>

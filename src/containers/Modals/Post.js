@@ -125,7 +125,7 @@ class Post extends Component {
                   </Grid.Column>
 
                   <Grid.Column width={5}>
-                    <Divider />
+                    {/* <Divider /> */}
                     <Label as="a" color="orange" size="big">
                       <Icon name="caret up" />
                       UPVOTE
