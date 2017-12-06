@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ModalRoot from '../../components/ModalRoot';
+import PostSocialShare from '../../components/PostSocialShare';
+import CommentsRoot from '../../components/CommentsRoot';
+import IndividualComment from '../../components/IndividualComment';
+import RelatedPosts from '../../components/RelatedPosts';
 import {
   Advertisement,
   Button,
-  Comment,
   Divider,
   Grid,
   Header,
   Icon,
-  Item,
   Label,
   Modal,
   Segment
@@ -20,6 +22,7 @@ class Post extends Component {
     const { title, description, website, skill_level, author } =
       this.props.item.attributes || '';
     const { comments } = this.props.item.relationships || [];
+
     return (
       <ModalRoot size="large">
         <Modal.Content>
@@ -40,7 +43,7 @@ class Post extends Component {
                   <Grid.Column verticalAlign="middle">
                     <Button
                       floated="right"
-                      color="orange"
+                      color="blue"
                       size="large"
                       animated
                       basic
@@ -54,6 +57,7 @@ class Post extends Component {
                 </Grid.Row>
 
                 <Grid.Row>
+                  {/* First Column */}
                   <Grid.Column width={11}>
                     <Segment basic>
                       <Grid>
@@ -61,72 +65,25 @@ class Post extends Component {
                       </Grid>
                     </Segment>
 
-                    <Segment>
-                      <Button color="twitter" compact>
-                        <Icon name="twitter" /> TWEET
-                      </Button>
-                      <Button color="facebook" compact>
-                        <Icon name="facebook" /> SHARE
-                      </Button>
-                      <Divider />
-                      {description}
-                    </Segment>
+                    <PostSocialShare description={description} />
 
-                    <Segment basic>
-                      <Header as="h5" color="grey">
-                        DISCUSSION
-                      </Header>
-                      <Grid celled>
-                        <Grid.Row>
-                          <Grid.Column width={5}>
-                            <Header as="h6">HUNTER</Header>
-                            <Item.Group link>
-                              <Item>
-                                <Item.Content verticalAlign="middle">
-                                  <Icon size="big" name="user circle" />
-                                  <Item.Header>{author}</Item.Header>
-                                </Item.Content>
-                              </Item>
-                            </Item.Group>
-                          </Grid.Column>
-                          <Grid.Column width={11}>
-                            <Header as="h6">AUTHOR</Header>
-                            <Item.Group link>
-                              <Item>
-                                <Item.Content verticalAlign="middle">
-                                  <Icon size="big" name="user circle" />
-                                  <Item.Header>{author}</Item.Header>
-                                </Item.Content>
-                              </Item>
-                            </Item.Group>
-                          </Grid.Column>
-                        </Grid.Row>
-                      </Grid>
-
-                      <Comment.Group>
-                        {comments.map(comment => {
-                          return (
-                            <Comment key={comment.id}>
-                              <Comment.Avatar />
-                              <Comment.Content>
-                                <Comment.Author as="a">Matt</Comment.Author>
-                                <Comment.Metadata>
-                                  <div>Today at 5:42PM</div>
-                                </Comment.Metadata>
-                                <Comment.Text>
-                                  {comment.attributes.content}
-                                </Comment.Text>
-                              </Comment.Content>
-                            </Comment>
-                          );
-                        })}
-                      </Comment.Group>
-                    </Segment>
+                    <CommentsRoot author={author}>
+                      {comments.map(comment => {
+                        return (
+                          <IndividualComment
+                            key={comment.id}
+                            comment={comment}
+                          />
+                        );
+                      })}
+                    </CommentsRoot>
                   </Grid.Column>
+                  {/* End First Column */}
 
+                  {/* Second Column */}
                   <Grid.Column width={5}>
-                    <Divider />
-                    <Label as="a" color="orange" size="big">
+                    {/* <Divider /> */}
+                    <Label as="a" color="blue" size="big">
                       <Icon name="caret up" />
                       UPVOTE
                       <Label.Detail>{this.props.item.total_likes}</Label.Detail>
@@ -145,19 +102,16 @@ class Post extends Component {
 
                     <Divider />
 
-                    <Segment basic>
-                      <Header as="h5" color="grey">
-                        RELATED TUTORIALS
-                      </Header>
-                    </Segment>
+                    <Header as="h5" color="grey">
+                      RELATED TUTORIALS
+                    </Header>
+
+                    <Segment.Group>
+                      <RelatedPosts />
+                    </Segment.Group>
                   </Grid.Column>
                 </Grid.Row>
-
-                {/* <Grid.Row>
-                  <Grid.Column stretched>
-                    <Advertisement unit='large leaderboard' test='Ad Unit 2' centered />
-                  </Grid.Column>
-                </Grid.Row> */}
+                {/* End Second Column */}
               </Grid>
             </Modal.Description>
           )}
@@ -168,8 +122,8 @@ class Post extends Component {
 }
 
 const mapStateToProps = state => ({
-  isFetching: state.posts.isFetching,
-  item: state.posts.item
+  isFetching: state.post.isFetching,
+  item: state.post.item
 });
 
 export default connect(mapStateToProps)(Post);
