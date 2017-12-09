@@ -43,7 +43,7 @@ class Post extends Component {
                   <Grid.Column verticalAlign="middle">
                     <Button
                       floated="right"
-                      color="blue"
+                      color="teal"
                       size="large"
                       animated
                       basic
@@ -83,7 +83,7 @@ class Post extends Component {
                   {/* Second Column */}
                   <Grid.Column width={5}>
                     {/* <Divider /> */}
-                    <Label as="a" color="blue" size="big">
+                    <Label as="a" color="teal" size="big">
                       <Icon name="caret up" />
                       UPVOTE
                       <Label.Detail>{this.props.item.total_likes}</Label.Detail>
