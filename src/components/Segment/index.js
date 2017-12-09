@@ -18,7 +18,7 @@ const Welcome = props => (
             latest Web, Mobile, AI, IoT, VR and many more articles.
           </p>
           <Button
-            color="blue"
+            color="teal"
             size="large"
             onClick={() => {
               props.openModal('MODAL_TYPE_LOGIN');
