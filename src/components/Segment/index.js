@@ -28,7 +28,7 @@ const Welcome = props => (
           </Button>
         </Grid.Column>
         <Grid.Column textAlign="center" only="tablet computer">
-          {' < Image goes here > '}
+          {/* {' < Image goes here > '} */}
         </Grid.Column>
       </Grid.Row>
     </Grid>

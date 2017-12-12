@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Icon, Item, Label, Popup, Segment } from 'semantic-ui-react';
+import { Button, Icon, Item, Label, Segment } from 'semantic-ui-react';
 
 const PostCard = props => (
   <Segment onClick={props.openModal(props.id)} attached>
@@ -9,13 +9,7 @@ const PostCard = props => (
           <Item.Header>{props.title}</Item.Header>
           <Item.Meta>{props.description}</Item.Meta>
           <Item.Extra>
-            <Label>Label</Label>
-            <Popup
-              trigger={<span>+ 1</span>}
-              content={<Label>Label</Label>}
-              on="click"
-              position="right center"
-            />
+            <Label>{props.skillLevel}</Label>
             <Button basic icon compact size="tiny" floated="right">
               <Icon name="comments" />
               {props.totalComments}

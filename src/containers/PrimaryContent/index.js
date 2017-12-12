@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchPosts, fetchPost } from '../../actions/postsAction';
 import { openModal } from '../../actions/modalAction';
 import PostCard from '../../components/PostCard';
-import { Button, Header, Icon, Segment } from 'semantic-ui-react';
+import { Header, Segment } from 'semantic-ui-react';
 
 class PrimaryContent extends Component {
   componentDidMount() {
@@ -43,16 +43,17 @@ class PrimaryContent extends Component {
                 id={post.id}
                 title={post.attributes.title}
                 description={post.attributes.description}
+                skillLevel={post.attributes.skill_level}
                 totalComments={post.total_comments}
                 totalLikes={post.total_likes}
                 openModal={this.openModal}
               />
             );
           })}
-          <Button basic icon attached="bottom">
+          {/* <Button basic icon attached="bottom">
             <Icon name="angle down" />
             SHOW 15 MORE
-          </Button>
+          </Button> */}
         </Segment.Group>
       </div>
     );

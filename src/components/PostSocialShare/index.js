@@ -10,7 +10,7 @@ const PostSocialShare = props => (
       <Icon name="facebook" /> SHARE
     </Button>
     <Button size="tiny" floated="right" disabled compact>
-      FEATURED 9 HOURS AGO
+      POSTED 9 HOURS AGO
     </Button>
     <Divider />
     {props.description}

@@ -5,6 +5,7 @@ import PostSocialShare from '../../components/PostSocialShare';
 import CommentsRoot from '../../components/CommentsRoot';
 import IndividualComment from '../../components/IndividualComment';
 import RelatedPosts from '../../components/RelatedPosts';
+import { fetchComment } from '../../actions/commentActions';
 import {
   Advertisement,
   Button,
@@ -18,10 +19,27 @@ import {
 } from 'semantic-ui-react';
 
 class Post extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: ''
+    };
+  }
+
+  handleChange = e => this.setState({ input: e.target.value });
+
+  handleCommentSubmit = comment => e => {
+    e.preventDefault();
+    const { dispatch } = this.props;
+
+    dispatch(fetchComment(this.props.item.id, comment));
+    this.props.isFetching ? null : this.setState({ input: '' });
+  };
+
   render() {
     const { title, description, website, skill_level, author } =
       this.props.item.attributes || '';
-    const { comments } = this.props.item.relationships || [];
+    const { comments } = this.props || [];
 
     return (
       <ModalRoot size="large">
@@ -67,7 +85,13 @@ class Post extends Component {
 
                     <PostSocialShare description={description} />
 
-                    <CommentsRoot author={author}>
+                    <CommentsRoot
+                      input={this.state.input}
+                      handleChange={this.handleChange}
+                      author={author}
+                      isFetching={this.props.commentRequest}
+                      fetchComment={this.handleCommentSubmit}
+                    >
                       {comments.map(comment => {
                         return (
                           <IndividualComment
@@ -123,7 +147,9 @@ class Post extends Component {
 
 const mapStateToProps = state => ({
   isFetching: state.post.isFetching,
-  item: state.post.item
+  commentRequest: state.post.commentRequest,
+  item: state.post.item,
+  comments: state.post.comments
 });
 
 export default connect(mapStateToProps)(Post);
