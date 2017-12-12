@@ -5,7 +5,7 @@ const IndividualComment = props => (
   <Comment>
     <Comment.Avatar />
     <Comment.Content>
-      <Comment.Author as="a">Matt</Comment.Author>
+      <Comment.Author as="a">Test User</Comment.Author>
       <Comment.Metadata>
         <div>Today at 5:42PM</div>
       </Comment.Metadata>

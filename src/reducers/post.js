@@ -1,11 +1,15 @@
 import {
   REQUEST_INDIVIDUAL_POST,
-  RECEIVE_INDIVIDUAL_POST
+  RECEIVE_INDIVIDUAL_POST,
+  ADD_COMMENT_REQUEST,
+  ADD_COMMENT_RECEIVE
 } from '../constants/actionTypes';
 
 const initialState = {
   isFetching: false,
-  item: []
+  commentRequest: false,
+  item: [],
+  comments: []
 };
 
 export default (state = initialState, action) => {
@@ -20,7 +24,20 @@ export default (state = initialState, action) => {
         ...state,
         isFetching: !state.isFetching,
         lastUpdated: action.receivedAt,
-        item: action.post
+        item: action.post,
+        comments: action.post.relationships.comments
+      };
+    case ADD_COMMENT_REQUEST:
+      return {
+        ...state,
+        commentRequest: !state.commentRequest
+      };
+    case ADD_COMMENT_RECEIVE:
+      console.log(`this is the comment payload... ${action.comment}`);
+      return {
+        ...state,
+        commentRequest: !state.commentRequest,
+        comments: [action.comment, ...state.comments]
       };
     default:
       return state;
