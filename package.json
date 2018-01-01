@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "prop-types": "^15.6.0",
-    "react": "^16.1.0",
-    "react-dom": "^16.1.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "next",
@@ -14,7 +14,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "semantic-ui-css": "^2.2.12",
-    "semantic-ui-react": "^0.76.0"
+    "semantic-ui-react": "^0.77.1"
   },
   "proxy": {
     "/api": {
@@ -39,8 +39,8 @@
   },
   "devDependencies": {
     "husky": "^0.14.3",
-    "lint-staged": "^5.0.0",
-    "prettier": "^1.8.2",
+    "lint-staged": "^6.0.0",
+    "prettier": "^1.9.2",
     "redux-devtools-extension": "^2.13.2"
   }
 }
