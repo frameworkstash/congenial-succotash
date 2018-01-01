@@ -33,7 +33,10 @@ class Post extends Component {
     const { dispatch } = this.props;
 
     dispatch(fetchComment(this.props.item.id, comment));
-    this.props.isFetching ? null : this.setState({ input: '' });
+
+    if (!this.props.isFetching) {
+      this.setState({ input: '' });
+    }
   };
 
   render() {
@@ -92,14 +95,20 @@ class Post extends Component {
                       isFetching={this.props.commentRequest}
                       fetchComment={this.handleCommentSubmit}
                     >
-                      {comments.map(comment => {
-                        return (
-                          <IndividualComment
-                            key={comment.id}
-                            comment={comment}
-                          />
-                        );
-                      })}
+                      {comments.length < 1 ? (
+                        <Segment textAlign="center" basic secondary>
+                          No comments to show :(
+                        </Segment>
+                      ) : (
+                        comments.map(comment => {
+                          return (
+                            <IndividualComment
+                              key={comment.id}
+                              comment={comment}
+                            />
+                          );
+                        })
+                      )}
                     </CommentsRoot>
                   </Grid.Column>
                   {/* End First Column */}
