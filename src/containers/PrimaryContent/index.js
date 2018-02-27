@@ -41,9 +41,9 @@ class PrimaryContent extends Component {
               <PostCard
                 key={post.id}
                 id={post.id}
-                title={post.attributes.title}
-                description={post.attributes.description}
-                skillLevel={post.attributes.skill_level}
+                title={post.title}
+                description={post.description}
+                skillLevel={post.skill_level}
                 totalComments={post.total_comments}
                 totalLikes={post.total_likes}
                 openModal={this.openModal}

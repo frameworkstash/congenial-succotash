@@ -10,7 +10,7 @@ const IndividualComment = props => (
         <div>Today at 5:42PM</div>
       </Comment.Metadata>
       <Comment.Text>
-        <p>{props.comment.attributes.content}</p>
+        <p>{props.comment.content}</p>
       </Comment.Text>
       <Comment.Actions>
         <Comment.Action>
