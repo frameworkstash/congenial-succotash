@@ -12,6 +12,19 @@ const Navigation = props => (
       </Header>
       <Menu secondary vertical fluid>
         <Menu.Item
+          name="yours"
+          active={props.activeItem === 'yours'}
+          onClick={e => {
+            props.changeActiveItem(e.target.text.toLowerCase());
+          }}
+        >
+          <Icon.Group>
+            <Icon color="grey" name="user circle outline" />
+          </Icon.Group>
+          Yours
+        </Menu.Item>
+
+        <Menu.Item
           name="home"
           active={props.activeItem === 'home'}
           onClick={e => {
