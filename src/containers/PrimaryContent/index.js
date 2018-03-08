@@ -19,6 +19,10 @@ class PrimaryContent extends Component {
     dispatch(openModal('MODAL_TYPE_POST'));
   };
 
+  getAllPosts = state => {
+    return state.result.map(id => state.entities.tutorials[id]);
+  };
+
   render() {
     const { posts } = this.props;
 
@@ -26,7 +30,7 @@ class PrimaryContent extends Component {
       return <p>Loading...</p>;
     }
 
-    if (!posts) {
+    if (!posts.entities) {
       return <p>Uh-oh! No content here :(</p>;
     }
 
@@ -36,14 +40,14 @@ class PrimaryContent extends Component {
           <Header as="h2" attached="top">
             Today
           </Header>
-          {posts.map(post => {
+          {this.getAllPosts(posts).map(post => {
             return (
               <PostCard
                 key={post.id}
                 id={post.id}
-                title={post.attributes.title}
-                description={post.attributes.description}
-                skillLevel={post.attributes.skill_level}
+                title={post.title}
+                description={post.description}
+                skillLevel={post.skill_level}
                 totalComments={post.total_comments}
                 totalLikes={post.total_likes}
                 openModal={this.openModal}
@@ -62,7 +66,7 @@ class PrimaryContent extends Component {
 
 const mapStateToProps = state => ({
   isFetching: state.posts.isFetching,
-  posts: state.posts.items,
+  posts: state.posts.data,
   activeItem: state.navigation.activeItem
 });
 

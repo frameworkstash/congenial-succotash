@@ -1,3 +1,5 @@
+import { normalize } from 'normalizr';
+import * as schema from './schema';
 import * as types from '../constants/actionTypes';
 
 export const requestPosts = topic => ({
@@ -8,7 +10,7 @@ export const requestPosts = topic => ({
 export const receivePosts = (topic, json) => ({
   type: types.RECEIVE_POSTS,
   topic,
-  posts: json.data.tutorials,
+  response: normalize(json.data.tutorials, schema.arrayOfTutorials),
   receivedAt: Date.now()
 });
 
@@ -20,7 +22,7 @@ export const requestIndividualPost = id => ({
 export const receiveIndividualPost = (id, json) => ({
   type: types.RECEIVE_INDIVIDUAL_POST,
   id,
-  post: json.data.tutorial,
+  post: normalize(json.data.tutorial, schema.tutorial),
   receivedAt: Date.now
 });
 
@@ -32,7 +34,13 @@ export const fetchPosts = topic => dispatch => {
       response => response.json(),
       error => console.log('An error has occured', error)
     )
-    .then(json => dispatch(receivePosts(topic, json)));
+    .then(json => {
+      console.log(
+        'normalized response',
+        normalize(json.data.tutorials, schema.arrayOfTutorials)
+      );
+      dispatch(receivePosts(topic, json));
+    });
 };
 
 export const fetchPost = id => dispatch => {
@@ -43,5 +51,11 @@ export const fetchPost = id => dispatch => {
       response => response.json(),
       error => console.log('An error has occured', error)
     )
-    .then(json => dispatch(receiveIndividualPost(id, json)));
+    .then(json => {
+      console.log(
+        'normalized response',
+        normalize(json.data.tutorial, schema.tutorial)
+      );
+      dispatch(receiveIndividualPost(id, json));
+    });
 };

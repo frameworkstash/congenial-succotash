@@ -2,7 +2,20 @@ import { REQUEST_POSTS, RECEIVE_POSTS } from '../constants/actionTypes';
 
 const initialState = {
   isFetching: false,
-  items: []
+  activePostById: [],
+  data: {}
+};
+
+const post = (state, action) => {
+  switch (action.type) {
+    case 'ADD_POST':
+      return {
+        id: action.id,
+        text: action.text
+      };
+    default:
+      return state;
+  }
 };
 
 export default (state = initialState, action) => {
@@ -17,7 +30,7 @@ export default (state = initialState, action) => {
         ...state,
         isFetching: !state.isFetching,
         lastUpdated: action.receivedAt,
-        items: action.posts
+        data: action.response
       };
     default:
       return state;
