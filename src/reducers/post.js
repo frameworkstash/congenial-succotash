@@ -25,7 +25,7 @@ export default (state = initialState, action) => {
         isFetching: !state.isFetching,
         lastUpdated: action.receivedAt,
         item: action.post,
-        comments: action.post.comments
+        comments: action.post.relationships.comments
       };
     case ADD_COMMENT_REQUEST:
       return {

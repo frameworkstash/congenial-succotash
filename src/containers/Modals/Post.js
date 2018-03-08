@@ -41,7 +41,7 @@ class Post extends Component {
 
   render() {
     const { title, description, website, skill_level, author } =
-      this.props.item || '';
+      this.props.item.attributes || '';
     const { comments } = this.props || [];
 
     return (
@@ -91,7 +91,7 @@ class Post extends Component {
                     <CommentsRoot
                       input={this.state.input}
                       handleChange={this.handleChange}
-                      author={author.name}
+                      author={author}
                       isFetching={this.props.commentRequest}
                       fetchComment={this.handleCommentSubmit}
                     >

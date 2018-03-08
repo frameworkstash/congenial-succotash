@@ -20,7 +20,7 @@ class Navbar extends Component {
             <Header as="h3" color="green">
               <Icon name="code" />
               <Header.Content>
-                Frameworkstash
+                Framework Stash
                 <Header.Subheader>
                   Directory of tutorials for all levels
                 </Header.Subheader>
