@@ -9,6 +9,5 @@ export default combineReducers({
   routing: routerReducer,
   modal,
   navigation,
-  posts,
-  post
+  posts
 });
