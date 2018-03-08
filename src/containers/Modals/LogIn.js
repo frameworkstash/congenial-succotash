@@ -9,7 +9,7 @@ const LogIn = props => (
         <Grid.Column>
           <Header as="h2">Login to Join The Community</Header>
           <p>
-            Frameworkstash is a community to share and geek out about<br />the
+            Framework Stash is a community to share and geek out about<br />the
             latest tutorials. Join us :)
           </p>
         </Grid.Column>

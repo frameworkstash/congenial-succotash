@@ -35,7 +35,7 @@ const SecondaryContent = props => (
             </Dropdown>
           </Menu.Item>
           <Menu.Item name="copyright">
-            <Icon name="copyright" /> 2018 Frameworkstash
+            Framework Stash <Icon name="copyright" /> 2017
           </Menu.Item>
         </Grid>
       </Menu>
