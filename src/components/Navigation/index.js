@@ -21,7 +21,7 @@ const Navigation = props => (
           <Icon.Group>
             <Icon color="grey" name="user circle outline" />
           </Icon.Group>
-          Yours
+          Test
         </Menu.Item>
 
         <Menu.Item
