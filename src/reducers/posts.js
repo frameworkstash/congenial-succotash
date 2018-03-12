@@ -1,4 +1,9 @@
-import { REQUEST_POSTS, RECEIVE_POSTS } from '../constants/actionTypes';
+import {
+  REQUEST_POSTS,
+  RECEIVE_POSTS,
+  REQUEST_INDIVIDUAL_POST,
+  RECEIVE_INDIVIDUAL_POST
+} from '../constants/actionTypes';
 
 const initialState = {
   isFetching: false,
@@ -6,7 +11,7 @@ const initialState = {
   data: {}
 };
 
-const post = (state, action) => {
+export const post = (state, action) => {
   switch (action.type) {
     case 'ADD_POST':
       return {
@@ -20,10 +25,18 @@ const post = (state, action) => {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case REQUEST_INDIVIDUAL_POST:
     case REQUEST_POSTS:
       return {
         ...state,
         isFetching: !state.isFetching
+      };
+    case RECEIVE_INDIVIDUAL_POST:
+      return {
+        ...state,
+        isFetching: !state.isFetching,
+        lastUpdated: action.receivedAt,
+        activePostById: action.activePost
       };
     case RECEIVE_POSTS:
       return {

@@ -8,7 +8,6 @@ import RelatedPosts from '../../components/RelatedPosts';
 import { fetchComment } from '../../actions/commentActions';
 import {
   Advertisement,
-  Button,
   Divider,
   Grid,
   Header,
@@ -37,9 +36,9 @@ class Post extends Component {
   };
 
   render() {
-    const { title, description, website, skill_level, author } =
-      this.props.item || '';
-    const { comments } = this.props || [];
+    const post = this.props.data.tutorials[this.props.activePostById];
+    const { title, description, website, skill_level, total_likes } = post;
+    const { comments } = post;
 
     return (
       <ModalRoot size="large">
@@ -57,21 +56,6 @@ class Post extends Component {
                     </Header>
                     <Label>{skill_level}</Label>
                   </Grid.Column>
-
-                  <Grid.Column verticalAlign="middle">
-                    <Button
-                      floated="right"
-                      color="green"
-                      size="large"
-                      animated
-                      basic
-                    >
-                      <Button.Content visible>View Full Page</Button.Content>
-                      <Button.Content hidden>
-                        <Icon name="right arrow" />
-                      </Button.Content>
-                    </Button>
-                  </Grid.Column>
                 </Grid.Row>
 
                 <Grid.Row>
@@ -88,15 +72,18 @@ class Post extends Component {
                     <CommentsRoot
                       input={this.state.input}
                       handleChange={this.handleChange}
-                      author={author.name}
+                      author={this.props.data.users[post.author].name}
                       isFetching={this.props.commentRequest}
                       fetchComment={this.handleCommentSubmit}
                     >
-                      {comments.map(comment => {
+                      {comments.map(id => {
                         return (
                           <IndividualComment
-                            key={comment.id}
-                            comment={comment}
+                            key={this.props.data.comments[id].id}
+                            comment={this.props.data.comments[id].content}
+                            totalLikes={
+                              this.props.data.comments[id].total_likes
+                            }
                           />
                         );
                       })}
@@ -110,7 +97,7 @@ class Post extends Component {
                     <Label as="a" color="green" size="big">
                       <Icon name="caret up" />
                       UPVOTE
-                      <Label.Detail>{this.props.item.total_likes}</Label.Detail>
+                      <Label.Detail>{total_likes}</Label.Detail>
                     </Label>
                     <Divider />
 
@@ -146,10 +133,10 @@ class Post extends Component {
 }
 
 const mapStateToProps = state => ({
-  isFetching: state.post.isFetching,
-  commentRequest: state.post.commentRequest,
-  item: state.post.item,
-  comments: state.post.comments
+  isFetching: state.posts.isFetching,
+  // commentRequest: state.post.commentRequest,
+  activePostById: state.posts.activePostById,
+  data: state.posts.data.entities
 });
 
 export default connect(mapStateToProps)(Post);
