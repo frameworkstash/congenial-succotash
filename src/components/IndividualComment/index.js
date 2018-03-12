@@ -10,12 +10,12 @@ const IndividualComment = props => (
         <div>Today at 5:42PM</div>
       </Comment.Metadata>
       <Comment.Text>
-        <p>{props.comment.content}</p>
+        <p>{props.comment}</p>
       </Comment.Text>
       <Comment.Actions>
         <Comment.Action>
           <Icon name="caret up" />
-          {`UPVOTE (${props.comment.total_likes})`}
+          {`UPVOTE (${props.totalLikes})`}
         </Comment.Action>
       </Comment.Actions>
     </Comment.Content>
