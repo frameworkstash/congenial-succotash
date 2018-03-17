@@ -1,7 +1,6 @@
 import { normalize } from 'normalizr';
 import * as schema from './schema';
 import * as types from '../constants/actionTypes';
-import store from '../store';
 
 export const requestPosts = topic => ({
   type: types.REQUEST_POSTS,
@@ -15,15 +14,15 @@ export const receivePosts = (topic, json) => ({
   receivedAt: Date.now()
 });
 
-export const requestIndividualPost = id => ({
+export const requestPost = id => ({
   type: types.REQUEST_INDIVIDUAL_POST,
   id
 });
 
-export const receiveIndividualPost = id => ({
+export const receivePost = (id, json) => ({
   type: types.RECEIVE_INDIVIDUAL_POST,
-  activePost: id,
-  receivedAt: Date.now
+  post: normalize(json.data.tutorial, schema.tutorial),
+  id
 });
 
 export const fetchPosts = topic => dispatch => {
@@ -44,9 +43,18 @@ export const fetchPosts = topic => dispatch => {
 };
 
 export const fetchPost = id => dispatch => {
-  dispatch(requestIndividualPost(id));
+  dispatch(requestPost(id));
 
-  store.getState().posts.data.result.includes(id)
-    ? dispatch(receiveIndividualPost(id))
-    : console.log('error, post not found');
+  return fetch(`/api/tutorials/${id}`)
+    .then(
+      response => response.json(),
+      error => console.log('An error has occured', error)
+    )
+    .then(json => {
+      console.log(
+        'normalized response',
+        normalize(json.data.tutorial, schema.tutorial)
+      );
+      dispatch(receivePost(id, json));
+    });
 };
