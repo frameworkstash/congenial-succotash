@@ -11,3 +11,7 @@ export const openModal = (type, props) => ({
 export const closeModal = () => ({
   type: types.CLOSE_MODAL
 });
+
+export const modalUnloaded = () => ({
+  type: types.MODAL_UNLOADED
+});

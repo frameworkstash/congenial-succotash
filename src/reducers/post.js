@@ -1,7 +1,8 @@
 import {
   REQUEST_INDIVIDUAL_POST,
   RECEIVE_INDIVIDUAL_POST,
-  ADD_COMMENT
+  ADD_COMMENT,
+  MODAL_UNLOADED
 } from '../constants/actionTypes';
 
 const initialState = {
@@ -52,6 +53,8 @@ export default (state = initialState, action) => {
         isFetching: !state.isFetching,
         data: action.post
       };
+    case MODAL_UNLOADED:
+      return initialState;
     case ADD_COMMENT:
       return addComment(state, action);
     default:
