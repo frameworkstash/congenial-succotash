@@ -12,7 +12,7 @@ const enhancers = [];
 const middleware = [thunk, logger, routerMiddleware(history)];
 
 if (
-  process.env.NODE_ENV === 'development' &&
+  process.env.NODE_ENV === 'development' ||
   process.env.NODE_ENV === 'production'
 ) {
   const devToolsExtension = window.devToolsExtension;
