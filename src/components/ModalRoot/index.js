@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Modal } from 'semantic-ui-react';
 import { closeModal } from '../../actions/modalAction';
+import { modalUnloaded } from '../../actions/modalAction';
 
 class ModalRoot extends Component {
   render() {
@@ -14,6 +15,7 @@ class ModalRoot extends Component {
         open={this.props.open}
         onClose={() => {
           this.props.closeModal();
+          this.props.modalUnloaded();
         }}
       >
         {this.props.children}
@@ -29,7 +31,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      closeModal
+      closeModal,
+      modalUnloaded
     },
     dispatch
   );
