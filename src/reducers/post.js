@@ -27,7 +27,7 @@ const addComment = (state, action) => {
         tutorials: {
           [postId]: {
             ...post,
-            comments: post.comments.concat(commentId)
+            comments: [...post.comments, commentId]
           }
         },
         // Update our Comments object with a new "comments" object
