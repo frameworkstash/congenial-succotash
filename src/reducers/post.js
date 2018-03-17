@@ -1,15 +1,42 @@
 import {
   REQUEST_INDIVIDUAL_POST,
   RECEIVE_INDIVIDUAL_POST,
-  ADD_COMMENT_REQUEST,
-  ADD_COMMENT_RECEIVE
+  ADD_COMMENT
 } from '../constants/actionTypes';
 
 const initialState = {
   isFetching: false,
-  commentRequest: false,
-  item: [],
-  comments: []
+  data: {}
+};
+
+const addComment = (state, action) => {
+  const { payload } = action;
+  const { postId, commentId, comment } = payload;
+
+  // Look up the correct post, to simplify the rest of the code
+  const post = state.data.entities.tutorials[postId];
+
+  return {
+    ...state,
+    data: {
+      ...state.data,
+      entities: {
+        ...state.data.entities,
+        // Update our Tutorials object with a new "comments" array
+        tutorials: {
+          [postId]: {
+            ...post,
+            comments: post.comments.concat(commentId)
+          }
+        },
+        // Update our Comments object with a new "comments" object
+        comments: {
+          ...state.data.entities.comments,
+          [commentId]: comment
+        }
+      }
+    }
+  };
 };
 
 export default (state = initialState, action) => {
@@ -23,22 +50,10 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isFetching: !state.isFetching,
-        lastUpdated: action.receivedAt,
-        item: action.post,
-        comments: action.post.comments
+        data: action.post
       };
-    case ADD_COMMENT_REQUEST:
-      return {
-        ...state,
-        commentRequest: !state.commentRequest
-      };
-    case ADD_COMMENT_RECEIVE:
-      console.log(`this is the comment payload... ${action.comment}`);
-      return {
-        ...state,
-        commentRequest: !state.commentRequest,
-        comments: [action.comment, ...state.comments]
-      };
+    case ADD_COMMENT:
+      return addComment(state, action);
     default:
       return state;
   }
