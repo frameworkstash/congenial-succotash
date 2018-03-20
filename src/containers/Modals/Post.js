@@ -32,7 +32,7 @@ class Post extends Component {
     e.preventDefault();
     const { dispatch } = this.props;
     dispatch(addComment(this.props.data.result, comment));
-    this.props.isFetching && this.setState({ input: '' });
+    !this.props.isFetching && this.setState({ input: '' });
   };
 
   getPostsComments = (entities, currentPostById) => {
