@@ -2,6 +2,7 @@ import {
   REQUEST_INDIVIDUAL_POST,
   RECEIVE_INDIVIDUAL_POST,
   ADD_COMMENT,
+  POST_UPVOTED,
   MODAL_UNLOADED
 } from '../constants/actionTypes';
 
@@ -40,6 +41,30 @@ const addComment = (state, action) => {
   };
 };
 
+const upvotePost = (state, action) => {
+  const { payload } = action;
+  const { id, response } = payload;
+  const { tutorials } = response.entities;
+
+  const post = state.data.entities.tutorials[id];
+
+  return {
+    ...state,
+    data: {
+      ...state.data,
+      entities: {
+        ...state.data.entities,
+        tutorials: {
+          [id]: {
+            ...post,
+            total_likes: tutorials[id].total_likes
+          }
+        }
+      }
+    }
+  };
+};
+
 export default (state = initialState, action) => {
   switch (action.type) {
     case REQUEST_INDIVIDUAL_POST:
@@ -53,10 +78,12 @@ export default (state = initialState, action) => {
         isFetching: !state.isFetching,
         data: action.post
       };
-    case MODAL_UNLOADED:
-      return initialState;
     case ADD_COMMENT:
       return addComment(state, action);
+    case POST_UPVOTED:
+      return upvotePost(state, action);
+    case MODAL_UNLOADED:
+      return initialState;
     default:
       return state;
   }

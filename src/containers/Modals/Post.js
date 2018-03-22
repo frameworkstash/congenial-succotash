@@ -6,6 +6,7 @@ import CommentsRoot from '../../components/CommentsRoot';
 import IndividualComment from '../../components/IndividualComment';
 import RelatedPosts from '../../components/RelatedPosts';
 import { addComment } from '../../actions/commentActions';
+import { upvotePost } from '../../actions/postsAction';
 
 import {
   Advertisement,
@@ -41,6 +42,13 @@ class Post extends Component {
     );
   };
 
+  handleUpvoteSubmit = e => {
+    e.preventDefault();
+
+    const { dispatch } = this.props;
+    dispatch(upvotePost(this.props.data.result));
+  };
+
   render() {
     if (this.props.isFetching) {
       return (
@@ -63,13 +71,7 @@ class Post extends Component {
                       this.props.data.entities.tutorials[this.props.data.result]
                         .title
                     }
-                    <Header.Subheader>
-                      {
-                        this.props.data.entities.tutorials[
-                          this.props.data.result
-                        ].description
-                      }
-                    </Header.Subheader>
+                    <Header.Subheader>Tagline</Header.Subheader>
                   </Header>
                   <Label>
                     {
@@ -127,8 +129,12 @@ class Post extends Component {
 
                 {/* Second Column */}
                 <Grid.Column width={5}>
-                  {/* <Divider /> */}
-                  <Label as="a" color="green" size="big">
+                  <Label
+                    onClick={this.handleUpvoteSubmit}
+                    as="a"
+                    color="green"
+                    size="big"
+                  >
                     <Icon name="caret up" />
                     UPVOTE
                     <Label.Detail>
