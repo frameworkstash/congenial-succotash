@@ -25,6 +25,14 @@ export const receivePost = (id, json) => ({
   id
 });
 
+export const upvotePostSuccess = (id, json) => ({
+  type: types.POST_UPVOTED,
+  payload: {
+    id,
+    response: normalize(json, schema.tutorial)
+  }
+});
+
 export const fetchPosts = topic => dispatch => {
   dispatch(requestPosts(topic));
 
@@ -56,5 +64,26 @@ export const fetchPost = id => dispatch => {
         normalize(json.data.tutorial, schema.tutorial)
       );
       dispatch(receivePost(id, json));
+    });
+};
+
+export const upvotePost = id => dispatch => {
+  return fetch(`/api/tutorials/${id}/upvote`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      id: id
+    })
+  })
+    .then(
+      response => response.json(),
+      error => console.log('An error has occured', error)
+    )
+    .then(json => {
+      console.log(normalize(json, schema.tutorial));
+      dispatch(upvotePostSuccess(id, json));
     });
 };
