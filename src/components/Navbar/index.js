@@ -17,7 +17,7 @@ class Navbar extends Component {
       <Menu attached borderless size="tiny">
         <Container>
           <Menu.Item header fitted="horizontally">
-            <Header as="h3" color="green">
+            <Header as="h3" color="blue">
               <Icon name="code" />
               <Header.Content>
                 Frameworkstash
@@ -61,7 +61,7 @@ class Navbar extends Component {
                 onClick={() => {
                   this.props.openModal('MODAL_TYPE_LOGIN');
                 }}
-                color="green"
+                color="blue"
                 compact
               >
                 SIGN UP
