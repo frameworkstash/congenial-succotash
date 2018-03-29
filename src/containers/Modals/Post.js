@@ -132,7 +132,7 @@ class Post extends Component {
                   <Label
                     onClick={this.handleUpvoteSubmit}
                     as="a"
-                    color="green"
+                    color="blue"
                     size="big"
                   >
                     <Icon name="caret up" />
