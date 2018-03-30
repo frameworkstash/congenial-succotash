@@ -138,11 +138,13 @@ class Post extends Component {
                     <Icon name="caret up" />
                     UPVOTE
                     <Label.Detail>
-                      {
-                        this.props.data.entities.tutorials[
-                          this.props.data.result
-                        ].total_likes
-                      }
+                      {this.props.data.entities.tutorials[
+                        this.props.data.result
+                      ].total_likes > 0
+                        ? this.props.data.entities.tutorials[
+                            this.props.data.result
+                          ].total_likes
+                        : ''}
                     </Label.Detail>
                   </Label>
                   <Divider />
