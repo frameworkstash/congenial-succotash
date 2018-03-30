@@ -15,7 +15,7 @@ const IndividualComment = props => (
       <Comment.Actions>
         <Comment.Action>
           <Icon name="caret up" />
-          {`UPVOTE (${props.totalLikes})`}
+          {`UPVOTE ${props.totalLikes > 0 ? props.totalLikes : ''}`}
         </Comment.Action>
       </Comment.Actions>
     </Comment.Content>
