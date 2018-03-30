@@ -65,7 +65,7 @@ class CommentsRoot extends Component {
                         type="submit"
                         content={isFetching ? 'COMMENTING...' : 'COMMENT'}
                         floated="right"
-                        color="green"
+                        color="blue"
                         disabled={isFetching}
                       />
                     )}
