@@ -1,15 +1,14 @@
 import React from 'react';
 import { Header, Item, Segment } from 'semantic-ui-react';
 
-const related = [];
-for (let i = 0; i < 8; i++) {
-  related.push(
-    <Segment key={i} secondary>
+const RelatedPosts = props => {
+  return (
+    <Segment secondary>
       <Item.Group link>
         <Item>
           <Header as="h5">
             <Header.Content>
-              Test header
+              {props.tutorial.title}
               <Header.Subheader>Test subheader</Header.Subheader>
             </Header.Content>
           </Header>
@@ -17,7 +16,6 @@ for (let i = 0; i < 8; i++) {
       </Item.Group>
     </Segment>
   );
-}
-const RelatedPosts = () => [related];
+};
 
 export default RelatedPosts;

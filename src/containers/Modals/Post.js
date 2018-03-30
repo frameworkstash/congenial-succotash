@@ -132,7 +132,7 @@ class Post extends Component {
                   <Label
                     onClick={this.handleUpvoteSubmit}
                     as="a"
-                    color="green"
+                    color="blue"
                     size="big"
                   >
                     <Icon name="caret up" />
@@ -170,7 +170,24 @@ class Post extends Component {
                   </Header>
 
                   <Segment.Group>
-                    <RelatedPosts />
+                    {this.props.data.entities.tutorials[
+                      this.props.data.result
+                    ].related_tutorials.map(relatedPostsById => {
+                      return (
+                        <RelatedPosts
+                          key={
+                            this.props.data.entities.related_tutorials[
+                              relatedPostsById
+                            ].id
+                          }
+                          tutorial={
+                            this.props.data.entities.related_tutorials[
+                              relatedPostsById
+                            ]
+                          }
+                        />
+                      );
+                    })}
                   </Segment.Group>
                 </Grid.Column>
               </Grid.Row>
