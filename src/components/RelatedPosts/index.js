@@ -9,7 +9,7 @@ const RelatedPosts = props => {
           <Header as="h5">
             <Header.Content>
               {props.tutorial.title}
-              <Header.Subheader>Test subheader</Header.Subheader>
+              <Header.Subheader>Tagline</Header.Subheader>
             </Header.Content>
           </Header>
         </Item>
