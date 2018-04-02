@@ -18,7 +18,7 @@ class Navbar extends Component {
         <Container>
           <Menu.Item header fitted="horizontally">
             <Header as="h3" color="blue">
-              <Icon name="code" />
+              {/* <Icon name="code" /> */}
               <Header.Content>
                 Frameworkstash
                 <Header.Subheader>

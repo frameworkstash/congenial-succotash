@@ -7,7 +7,6 @@ import IndividualComment from '../../components/IndividualComment';
 import RelatedPosts from '../../components/RelatedPosts';
 import { addComment } from '../../actions/commentActions';
 import { upvotePost } from '../../actions/postsAction';
-
 import {
   Advertisement,
   Divider,
@@ -37,9 +36,19 @@ class Post extends Component {
   };
 
   getPostsComments = (entities, currentPostById) => {
-    return entities.tutorials[currentPostById].comments.map(
-      commentById => entities.comments[commentById]
-    );
+    return entities.tutorials[currentPostById].comments.map(commentById => {
+      const { id, content, total_likes, created_at } = entities.comments[
+        commentById
+      ];
+      return (
+        <IndividualComment
+          key={id}
+          comment={content}
+          totalLikes={total_likes}
+          date={created_at}
+        />
+      );
+    });
   };
 
   handleUpvoteSubmit = e => {
@@ -50,6 +59,9 @@ class Post extends Component {
   };
 
   render() {
+    const { result, entities } = this.props.data;
+    const { comments } = entities || {};
+
     if (this.props.isFetching) {
       return (
         <ModalRoot size="large">
@@ -59,6 +71,7 @@ class Post extends Component {
         </ModalRoot>
       );
     }
+
     return (
       <ModalRoot size="large">
         <Modal.Content>
@@ -67,18 +80,16 @@ class Post extends Component {
               <Grid.Row>
                 <Grid.Column>
                   <Header as="h2">
-                    {
-                      this.props.data.entities.tutorials[this.props.data.result]
-                        .title
-                    }
+                    {entities.tutorials[result].title}
                     <Header.Subheader>Tagline</Header.Subheader>
                   </Header>
-                  <Label>
-                    {
-                      this.props.data.entities.tutorials[this.props.data.result]
-                        .skill_level
-                    }
-                  </Label>
+                  {entities.tutorials[result].all_tags.split(',').map(tag => {
+                    return (
+                      <Label color="yellow" size="small">
+                        {tag.toUpperCase()}
+                      </Label>
+                    );
+                  })}
                 </Grid.Column>
               </Grid.Row>
 
@@ -92,37 +103,20 @@ class Post extends Component {
                   </Segment>
 
                   <PostSocialShare
-                    description={
-                      this.props.data.entities.tutorials[this.props.data.result]
-                        .description
-                    }
+                    description={entities.tutorials[result].description}
+                    date={entities.tutorials[result].created_at}
                   />
 
                   <CommentsRoot
                     input={this.state.input}
                     handleChange={this.handleChange}
                     author={
-                      this.props.data.entities.users[
-                        this.props.data.entities.tutorials[
-                          this.props.data.result
-                        ].author
-                      ].name
+                      entities.users[entities.tutorials[result].author].name
                     }
                     isFetching={this.props.commentRequest}
                     fetchComment={this.handleCommentSubmit}
                   >
-                    {this.getPostsComments(
-                      this.props.data.entities,
-                      this.props.data.result
-                    ).map(comment => {
-                      return (
-                        <IndividualComment
-                          key={comment.id}
-                          comment={comment.content}
-                          totalLikes={comment.total_likes}
-                        />
-                      );
-                    })}
+                    {comments && this.getPostsComments(entities, result)}
                   </CommentsRoot>
                 </Grid.Column>
                 {/* End First Column */}
@@ -138,11 +132,8 @@ class Post extends Component {
                     <Icon name="caret up" />
                     UPVOTE
                     <Label.Detail>
-                      {
-                        this.props.data.entities.tutorials[
-                          this.props.data.result
-                        ].total_likes
-                      }
+                      {entities.tutorials[result].total_likes > 0 &&
+                        entities.tutorials[result].total_likes}
                     </Label.Detail>
                   </Label>
                   <Divider />
@@ -153,11 +144,7 @@ class Post extends Component {
                       <Header.Content>
                         Website
                         <Header.Subheader>
-                          {
-                            this.props.data.entities.tutorials[
-                              this.props.data.result
-                            ].website
-                          }
+                          {entities.tutorials[result].website}
                         </Header.Subheader>
                       </Header.Content>
                     </Header>
@@ -170,24 +157,20 @@ class Post extends Component {
                   </Header>
 
                   <Segment.Group>
-                    {this.props.data.entities.tutorials[
-                      this.props.data.result
-                    ].related_tutorials.map(relatedPostsById => {
-                      return (
-                        <RelatedPosts
-                          key={
-                            this.props.data.entities.related_tutorials[
-                              relatedPostsById
-                            ].id
-                          }
-                          tutorial={
-                            this.props.data.entities.related_tutorials[
-                              relatedPostsById
-                            ]
-                          }
-                        />
-                      );
-                    })}
+                    {entities.tutorials[result].related_tutorials.map(
+                      relatedPostsById => {
+                        return (
+                          <RelatedPosts
+                            key={
+                              entities.related_tutorials[relatedPostsById].id
+                            }
+                            tutorial={
+                              entities.related_tutorials[relatedPostsById]
+                            }
+                          />
+                        );
+                      }
+                    )}
                   </Segment.Group>
                 </Grid.Column>
               </Grid.Row>

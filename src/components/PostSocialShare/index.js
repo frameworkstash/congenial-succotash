@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { Button, Divider, Icon, Segment } from 'semantic-ui-react';
 
 const PostSocialShare = props => (
@@ -10,7 +11,9 @@ const PostSocialShare = props => (
       <Icon name="facebook" /> SHARE
     </Button>
     <Button size="tiny" floated="right" disabled compact>
-      POSTED 9 HOURS AGO
+      {`POSTED ${moment(props.date)
+        .fromNow()
+        .toUpperCase()}`}
     </Button>
     <Divider />
     {props.description}

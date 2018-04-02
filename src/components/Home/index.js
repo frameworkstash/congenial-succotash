@@ -4,10 +4,10 @@ import Welcome from '../Segment';
 import Main from '../Main';
 
 const Home = () => (
-  <div>
+  <React.Fragment>
     <Welcome />
     <Main />
-  </div>
+  </React.Fragment>
 );
 
 export default Home;

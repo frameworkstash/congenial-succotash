@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { Comment, Icon } from 'semantic-ui-react';
 
 const IndividualComment = props => (
@@ -7,7 +8,9 @@ const IndividualComment = props => (
     <Comment.Content>
       <Comment.Author as="a">Test User</Comment.Author>
       <Comment.Metadata>
-        <div>Today at 5:42PM</div>
+        <div>
+          {moment(props.date).fromNow()} at {moment(props.date).format('LT')}
+        </div>
       </Comment.Metadata>
       <Comment.Text>
         <p>{props.comment}</p>
@@ -15,7 +18,7 @@ const IndividualComment = props => (
       <Comment.Actions>
         <Comment.Action>
           <Icon name="caret up" />
-          {`UPVOTE (${props.totalLikes})`}
+          UPVOTE {props.totalLikes > 0 && props.totalLikes}
         </Comment.Action>
       </Comment.Actions>
     </Comment.Content>

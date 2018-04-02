@@ -7,13 +7,13 @@ import ModalRoot from './containers/ModalRoot';
 
 const App = () => {
   return (
-    <div>
+    <React.Fragment>
       <Navbar />
-      <main>
+      <React.Fragment>
         <Route exact path="/" component={Home} />
-      </main>
+      </React.Fragment>
       <ModalRoot />
-    </div>
+    </React.Fragment>
   );
 };
 
