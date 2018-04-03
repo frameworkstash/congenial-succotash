@@ -7,7 +7,8 @@ import {
   Header,
   Icon,
   Item,
-  Segment
+  Segment,
+  TextArea
 } from 'semantic-ui-react';
 
 class CommentsRoot extends Component {
@@ -53,12 +54,12 @@ class CommentsRoot extends Component {
                 </Grid.Column>
                 <Grid.Column width={15}>
                   <Form onSubmit={this.props.fetchComment(this.props.input)}>
-                    <Form.Field
+                    <TextArea
+                      autoHeight
                       placeholder="What do you think of this tutorial..."
                       value={this.props.input}
                       onChange={this.props.handleChange}
-                      control="textarea"
-                      rows="1"
+                      rows={1}
                     />
                     {this.props.input && (
                       <Button
@@ -67,6 +68,7 @@ class CommentsRoot extends Component {
                         floated="right"
                         color="blue"
                         disabled={isFetching}
+                        style={{ margin: '10px 0 0 0' }}
                       />
                     )}
                   </Form>
