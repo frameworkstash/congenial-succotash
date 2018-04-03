@@ -7,7 +7,7 @@ import IndividualComment from '../../components/IndividualComment';
 import RelatedPosts from '../../components/RelatedPosts';
 import { addComment } from '../../actions/commentActions';
 import { upvotePost } from '../../actions/postsAction';
-import Truncate from 'react-truncate';
+import truncate from 'voca/truncate';
 import {
   Advertisement,
   Divider,
@@ -155,13 +155,9 @@ class Post extends Component {
                             <Header.Content>
                               Website
                               <Header.Subheader>
-                                {entities.tutorials[result].website.length >
-                                30 ? (
-                                  <Truncate lines={1}>
-                                    {entities.tutorials[result].website}
-                                  </Truncate>
-                                ) : (
-                                  entities.tutorials[result].website
+                                {truncate(
+                                  'http://www.thegreatcodeadventure.com/building-a-simple-crud-app-with-react-redux-part-1/',
+                                  32
                                 )}
                               </Header.Subheader>
                             </Header.Content>
