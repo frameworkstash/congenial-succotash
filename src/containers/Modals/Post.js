@@ -13,6 +13,7 @@ import {
   Grid,
   Header,
   Icon,
+  Item,
   Label,
   Modal,
   Segment
@@ -85,7 +86,7 @@ class Post extends Component {
                   </Header>
                   {entities.tutorials[result].all_tags.split(',').map(tag => {
                     return (
-                      <Label color="yellow" size="small">
+                      <Label key={tag} color="yellow" size="small">
                         {tag.toUpperCase()}
                       </Label>
                     );
@@ -136,18 +137,33 @@ class Post extends Component {
                         entities.tutorials[result].total_likes}
                     </Label.Detail>
                   </Label>
+
                   <Divider />
 
                   <Segment>
-                    <Header as="h5">
-                      <Icon name="browser" />
-                      <Header.Content>
-                        Website
-                        <Header.Subheader>
-                          {entities.tutorials[result].website}
-                        </Header.Subheader>
-                      </Header.Content>
-                    </Header>
+                    <Item
+                      href={entities.tutorials[result].website}
+                      target="_blank"
+                    >
+                      <Grid columns="equal">
+                        <Grid.Column verticalAlign="middle">
+                          <Icon name="safari" color="grey" size="big" />
+                        </Grid.Column>
+                        <Grid.Column width={11}>
+                          <Header as="h5">
+                            <Header.Content>
+                              Website
+                              <Header.Subheader>
+                                {entities.tutorials[result].website}
+                              </Header.Subheader>
+                            </Header.Content>
+                          </Header>
+                        </Grid.Column>
+                        <Grid.Column verticalAlign="middle">
+                          <Icon name="angle right" color="grey" size="big" />
+                        </Grid.Column>
+                      </Grid>
+                    </Item>
                   </Segment>
 
                   <Divider />
