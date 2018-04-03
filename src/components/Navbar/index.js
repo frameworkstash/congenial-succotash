@@ -2,14 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { openModal } from '../../actions/modalAction';
-import {
-  Button,
-  Container,
-  Dropdown,
-  Header,
-  Icon,
-  Menu
-} from 'semantic-ui-react';
+import { Button, Container, Dropdown, Header, Menu } from 'semantic-ui-react';
 
 class Navbar extends Component {
   render() {
@@ -18,7 +11,6 @@ class Navbar extends Component {
         <Container>
           <Menu.Item header fitted="horizontally">
             <Header as="h3" color="blue">
-              {/* <Icon name="code" /> */}
               <Header.Content>
                 Frameworkstash
                 <Header.Subheader>
