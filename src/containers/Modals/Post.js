@@ -156,7 +156,7 @@ class Post extends Component {
                               Website
                               <Header.Subheader>
                                 {entities.tutorials[result].website.length >
-                                32 ? (
+                                30 ? (
                                   <Truncate lines={1}>
                                     {entities.tutorials[result].website}
                                   </Truncate>
