@@ -156,7 +156,7 @@ class Post extends Component {
                               Website
                               <Header.Subheader>
                                 {truncate(
-                                  'http://www.thegreatcodeadventure.com/building-a-simple-crud-app-with-react-redux-part-1/',
+                                  entities.tutorials[result].website,
                                   32
                                 )}
                               </Header.Subheader>
