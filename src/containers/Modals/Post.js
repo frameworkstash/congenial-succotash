@@ -82,7 +82,12 @@ class Post extends Component {
               <Grid.Row>
                 <Grid.Column>
                   <Header as="h2">
-                    {entities.tutorials[result].title}
+                    <a
+                      href={entities.tutorials[result].website}
+                      target="_blank"
+                    >
+                      {entities.tutorials[result].title}
+                    </a>
                     <Header.Subheader>Tagline</Header.Subheader>
                   </Header>
                   {entities.tutorials[result].all_tags.split(',').map(tag => {
