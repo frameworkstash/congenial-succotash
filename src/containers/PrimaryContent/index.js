@@ -6,7 +6,7 @@ import PostCard from '../../components/PostCard';
 import { Header, Segment } from 'semantic-ui-react';
 
 class PrimaryContent extends Component {
-  componentDidMount() {
+  componentWillMount() {
     const { dispatch, activeItem } = this.props;
     dispatch(fetchPosts(activeItem));
   }

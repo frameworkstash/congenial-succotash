@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 import store, { history } from './store';
 
@@ -13,7 +14,9 @@ import registerServiceWorker from './registerServiceWorker';
 const router = (
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <App />
+      <Switch>
+        <Route path="/" component={App} />
+      </Switch>
     </ConnectedRouter>
   </Provider>
 );

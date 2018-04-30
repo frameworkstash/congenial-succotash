@@ -1,13 +1,22 @@
-import React from 'react';
-
-import Welcome from '../Segment';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import cookie from 'react-cookies';
+import Banner from '../Banner';
 import Main from '../Main';
 
-const Home = () => (
-  <React.Fragment>
-    <Welcome />
-    <Main />
-  </React.Fragment>
-);
+class Home extends Component {
+  render() {
+    return (
+      <React.Fragment>
+        <Banner currentUser={this.props.currentUser} />
+        <Main />
+      </React.Fragment>
+    );
+  }
+}
 
-export default Home;
+const mapStateToProps = state => ({
+  currentUser: cookie.load('jwt') ? state.currentUser : null
+});
+
+export default connect(mapStateToProps)(Home);
