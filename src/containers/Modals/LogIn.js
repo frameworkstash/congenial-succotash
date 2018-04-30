@@ -31,7 +31,7 @@ class LogIn extends Component {
               </Grid.Column>
 
               <Grid.Column>
-                <Button onClick={() => signInWithFacebook()} color="facebook">
+                <Button color="facebook">
                   <Icon name="facebook" /> LOGIN WITH FACEBOOK
                 </Button>
               </Grid.Column>
