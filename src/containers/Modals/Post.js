@@ -143,7 +143,6 @@ class Post extends Component {
                         entities.tutorials[result].total_likes}
                     </Label.Detail>
                   </Label>
-
                   <Divider />
 
                   <Segment>
@@ -197,6 +196,8 @@ class Post extends Component {
                       }
                     )}
                   </Segment.Group>
+
+                  <Advertisement unit="medium rectangle" test="Ad Unit 3" />
                 </Grid.Column>
               </Grid.Row>
               {/* End Second Column */}

@@ -14,7 +14,13 @@ const PostCard = props => (
               <Icon name="comments" />
               {props.totalComments}
             </Button>
-            <Button basic icon compact size="tiny" floated="right">
+            <Button
+              {...(props.upvoted ? { color: 'blue' } : { basic: true })}
+              icon
+              compact
+              size="tiny"
+              floated="right"
+            >
               <Icon name="heart" />
               {props.totalLikes}
             </Button>
