@@ -1,51 +1,74 @@
+import agent from './agent';
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { firebaseAuth } from './firebase';
-import { onLoad } from './actions/commonActions';
-import { current } from './actions/authActions';
+import { APP_LOAD, REDIRECT, CLOSE_MODAL } from './constants/actionTypes';
 import cookie from 'react-cookies';
+import store from './store';
+import { push } from 'react-router-redux';
+import DocumentTitle from 'react-document-title';
 
 import NavbarRoot from './containers/NavbarRoot';
-import Home from './components/Home';
 import ModalRoot from './containers/ModalRoot';
+import Home from './components/Home';
+import Profile from './components/Profile';
+import ProfileSettings from './components/ProfileSettings';
 
 class App extends Component {
-  componentWillMount() {
-    const { dispatch } = this.props;
-    firebaseAuth.onAuthStateChanged(user => {
-      if (user) {
-        // User is signed in.
-        const providerData = user.providerData[0];
-        console.log(
-          'Component => App, componentWillMount => firebase',
-          providerData
-        );
-        dispatch(current(providerData));
-      }
-    });
-    dispatch(onLoad());
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.redirectTo) {
+      // this.context.router.replace(nextProps.redirectTo);
+      store.dispatch({ type: CLOSE_MODAL });
+      store.dispatch(push(nextProps.redirectTo));
+      this.props.onRedirect();
+    }
+  }
+
+  componentDidMount() {
+    const token = cookie.load('jwt');
+    if (token) {
+      console.log('Im inside App.js', token);
+      agent.setToken(token);
+    }
+
+    this.props.onLoad(token ? agent.Auth.current() : null, token);
   }
 
   render() {
     if (this.props.appLoaded) {
       return (
-        <React.Fragment>
-          <NavbarRoot currentUser={this.props.currentUser} />
-          <Switch>
-            <Route exact path="/" component={Home} />
-          </Switch>
-          <ModalRoot />
-        </React.Fragment>
+        <DocumentTitle title="Frameworkstash">
+          <React.Fragment>
+            <NavbarRoot currentUser={this.props.currentUser} />
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/@:username" component={Profile} />
+              <Route
+                exact
+                path="/my/settings/edit"
+                component={ProfileSettings}
+              />
+            </Switch>
+            <ModalRoot />
+          </React.Fragment>
+        </DocumentTitle>
       );
     }
-    return <NavbarRoot currentUser={this.props.currentUser} />;
+    return null;
   }
 }
 
 const mapStateToProps = state => ({
   appLoaded: state.common.appLoaded,
-  currentUser: cookie.load('jwt') ? state.currentUser : null
+  appName: state.common.appName,
+  currentUser: state.common.currentUser,
+  redirectTo: state.common.redirectTo
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  onLoad: (payload, token) =>
+    dispatch({ type: APP_LOAD, payload, token, skipTracking: true }),
+  onRedirect: () => dispatch({ type: REDIRECT })
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

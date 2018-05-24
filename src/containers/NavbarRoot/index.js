@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { openModal } from '../../actions/modalAction';
 import LoggedOutView from '../../components/Navbar/LoggedOutView';
 import LoggedInView from '../../components/Navbar/LoggedInView';
@@ -14,10 +15,12 @@ class NavbarRoot extends Component {
           <Menu.Item header fitted="horizontally">
             <Header as="h3" color="blue">
               <Header.Content>
-                Frameworkstash
-                <Header.Subheader>
-                  Directory of tutorials for all levels
-                </Header.Subheader>
+                <Link to="/">
+                  Frameworkstash
+                  <Header.Subheader>
+                    Directory of tutorials for all levels
+                  </Header.Subheader>
+                </Link>
               </Header.Content>
             </Header>
           </Menu.Item>
