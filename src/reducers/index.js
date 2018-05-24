@@ -4,8 +4,9 @@ import navigation from './navigation';
 import posts from './posts';
 import post from './post';
 import modal from './modal';
-import currentUser from './currentUser';
 import common from './common';
+import auth from './auth';
+import profile from './profile';
 
 export default combineReducers({
   routing: routerReducer,
@@ -13,6 +14,7 @@ export default combineReducers({
   navigation,
   posts,
   post,
-  currentUser,
-  common
+  common,
+  auth,
+  profile
 });
