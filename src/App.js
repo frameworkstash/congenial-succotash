@@ -34,6 +34,18 @@ class App extends Component {
     this.props.onLoad(token ? agent.Auth.current() : null, token);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (!this.props.appLoaded) {
+      const token = cookie.load('jwt');
+      if (token) {
+        console.log('Im inside App.js', token);
+        agent.setToken(token);
+      }
+
+      this.props.onLoad(token ? agent.Auth.current() : null, token);
+    }
+  }
+
   render() {
     if (this.props.appLoaded) {
       return (

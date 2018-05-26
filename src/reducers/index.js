@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
+import { LOGOUT } from '../constants/actionTypes';
 import navigation from './navigation';
 import posts from './posts';
 import post from './post';
@@ -8,7 +9,7 @@ import common from './common';
 import auth from './auth';
 import profile from './profile';
 
-export default combineReducers({
+const appReducer = combineReducers({
   routing: routerReducer,
   modal,
   navigation,
@@ -18,3 +19,13 @@ export default combineReducers({
   auth,
   profile
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === LOGOUT) {
+    state = undefined;
+  }
+
+  return appReducer(state, action);
+};
+
+export default rootReducer;
