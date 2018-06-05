@@ -13,6 +13,7 @@ import ModalRoot from './containers/ModalRoot';
 import Home from './components/Home';
 import Profile from './components/Profile';
 import ProfileSettings from './components/ProfileSettings';
+import PrivateRoute from './containers/PrivateRoute';
 
 class App extends Component {
   componentWillReceiveProps(nextProps) {
@@ -55,7 +56,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/@:username" component={Profile} />
-              <Route
+              <PrivateRoute
                 exact
                 path="/my/settings/edit"
                 component={ProfileSettings}
