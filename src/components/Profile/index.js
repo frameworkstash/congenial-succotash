@@ -38,7 +38,7 @@ class Profile extends Component {
       this.props.currentUser &&
       this.props.currentUser.id === this.props.profile.id;
 
-    if (!this.props.profile) {
+    if (!this.props.profile.id) {
       return null;
     }
 
