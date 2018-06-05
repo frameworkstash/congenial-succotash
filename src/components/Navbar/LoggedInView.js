@@ -1,18 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signOut } from '../../actions/authActions';
-import {
-  Dropdown,
-  Icon,
-  Image,
-  Label,
-  List,
-  Menu,
-  Popup
-} from 'semantic-ui-react';
+import { LOGOUT } from '../../constants/actionTypes';
+import { Dropdown, Icon, Image, List, Menu, Popup } from 'semantic-ui-react';
 
 const LoggedInView = props => {
-  if (props.currentUser) {
+  if (!!props.currentUser) {
     return (
       <React.Fragment>
         <Menu.Menu position="right">
@@ -28,12 +21,7 @@ const LoggedInView = props => {
           </Menu.Item>
           <Menu.Item fitted="horizontally">
             <Dropdown
-              // trigger={<Icon name='bell' color='grey' link circular inverted />}
-              trigger={
-                <Label circular color="blue">
-                  1
-                </Label>
-              }
+              trigger={<Icon name="bell" color="grey" link circular inverted />}
               pointing="top right"
               icon={null}
             >
@@ -76,8 +64,10 @@ const LoggedInView = props => {
             <Dropdown
               trigger={
                 <Image
-                  src={props.currentUser.data.photoURL}
+                  src={props.currentUser.photoURL}
                   size="mini"
+                  bordered
+                  circular
                   avatar
                 />
               }
@@ -86,11 +76,15 @@ const LoggedInView = props => {
               icon={null}
             >
               <Dropdown.Menu>
-                <Dropdown.Item>MY PROFILE</Dropdown.Item>
+                <Dropdown.Item>
+                  <Link to={`/@${props.currentUser.username}`}>MY PROFILE</Link>
+                </Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item>SETTINGS</Dropdown.Item>
+                <Dropdown.Item>
+                  <Link to="/my/settings/edit">SETTINGS</Link>
+                </Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item onClick={() => props.dispatch(signOut())}>
+                <Dropdown.Item onClick={props.onClickLogout}>
                   LOGOUT
                 </Dropdown.Item>
               </Dropdown.Menu>
@@ -103,4 +97,8 @@ const LoggedInView = props => {
   return null;
 };
 
-export default connect()(LoggedInView);
+const mapDispatchToProps = dispatch => ({
+  onClickLogout: () => dispatch({ type: LOGOUT })
+});
+
+export default connect(null, mapDispatchToProps)(LoggedInView);

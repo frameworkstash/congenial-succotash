@@ -16,7 +16,7 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => ({
-  currentUser: cookie.load('jwt') ? state.currentUser : null
+  currentUser: cookie.load('jwt') ? state.common.currentUser : null
 });
 
 export default connect(mapStateToProps)(Home);

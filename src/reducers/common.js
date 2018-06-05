@@ -1,16 +1,43 @@
-import { APP_LOAD } from '../constants/actionTypes';
+import {
+  APP_LOAD,
+  REDIRECT,
+  LOGOUT,
+  LOGIN,
+  PROFILE_PAGE_UNLOADED,
+  REGISTER
+} from '../constants/actionTypes';
 
-const initialState = {
+const defaultState = {
   appName: 'Frameworkstash',
-  token: null
+  token: null,
+  viewChangeCounter: 0
 };
 
-export default (state = initialState, action) => {
+export default (state = defaultState, action) => {
   switch (action.type) {
     case APP_LOAD:
       return {
         ...state,
-        appLoaded: true
+        token: action.token || null,
+        appLoaded: true,
+        currentUser: action.payload ? action.payload.user : null
+      };
+    case REDIRECT:
+      return { ...state, redirectTo: null };
+    case LOGOUT:
+      return { ...state, redirectTo: '/', token: null, currentUser: null };
+    case LOGIN:
+    case REGISTER:
+      return {
+        ...state,
+        redirectTo: action.error ? null : '/',
+        token: action.error ? null : action.payload.user.token,
+        currentUser: action.error ? null : action.payload.user
+      };
+    case PROFILE_PAGE_UNLOADED:
+      return {
+        ...state,
+        viewChangeCounter: state.viewChangeCounter + 1
       };
     default:
       return state;

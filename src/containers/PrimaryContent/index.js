@@ -50,14 +50,11 @@ class PrimaryContent extends Component {
                 skillLevel={post.skill_level}
                 totalComments={post.total_comments}
                 totalLikes={post.total_likes}
+                upvoted={post.upvoted}
                 openModal={this.openModal}
               />
             );
           })}
-          {/* <Button basic icon attached="bottom">
-            <Icon name="angle down" />
-            SHOW 15 MORE
-          </Button> */}
         </Segment.Group>
       </div>
     );
