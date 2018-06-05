@@ -13,6 +13,7 @@ import ModalRoot from './containers/ModalRoot';
 import Home from './components/Home';
 import Profile from './components/Profile';
 import ProfileSettings from './components/ProfileSettings';
+import PrivateRoute from './containers/PrivateRoute';
 
 class App extends Component {
   componentWillReceiveProps(nextProps) {
@@ -34,6 +35,18 @@ class App extends Component {
     this.props.onLoad(token ? agent.Auth.current() : null, token);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (!this.props.appLoaded) {
+      const token = cookie.load('jwt');
+      if (token) {
+        console.log('Im inside App.js', token);
+        agent.setToken(token);
+      }
+
+      this.props.onLoad(token ? agent.Auth.current() : null, token);
+    }
+  }
+
   render() {
     if (this.props.appLoaded) {
       return (
@@ -43,7 +56,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/@:username" component={Profile} />
-              <Route
+              <PrivateRoute
                 exact
                 path="/my/settings/edit"
                 component={ProfileSettings}

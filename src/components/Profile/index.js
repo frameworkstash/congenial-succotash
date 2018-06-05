@@ -2,7 +2,8 @@ import agent from '../../agent';
 import DocumentTitle from 'react-document-title';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, NavLink, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import ProfileNavigation from '../ProfileNavigation';
 import ProfileSubTypeUpvoted from '../ProfileSubTypeUpvoted';
 import ProfileSubTypeSubmitted from '../ProfileSubTypeSubmitted';
 import ProfileSubTypeMade from '../ProfileSubTypeMade';
@@ -20,8 +21,7 @@ import {
   Header,
   Icon,
   List,
-  Menu,
-  Segment
+  Menu
 } from 'semantic-ui-react';
 
 class Profile extends Component {
@@ -37,6 +37,11 @@ class Profile extends Component {
     const isUser =
       this.props.currentUser &&
       this.props.currentUser.id === this.props.profile.id;
+
+    if (!this.props.profile.id) {
+      return null;
+    }
+
     return (
       <DocumentTitle
         title={`${this.props.profile.firstName} ${
@@ -91,46 +96,13 @@ class Profile extends Component {
             </Grid.Row>
 
             <Grid.Row>
-              <Grid.Column width={4}>
-                <Segment vertical>
-                  <Menu secondary vertical fluid>
-                    <Menu.Item
-                      name="upvotes"
-                      active={
-                        this.props.location.pathname === this.props.match.url
-                      }
-                    >
-                      <NavLink to={this.props.match.url}>{`${
-                        this.props.profile.upvotesTotal
-                      } Upvotes`}</NavLink>
-                    </Menu.Item>
-
-                    <Menu.Item
-                      name="submitted"
-                      active={
-                        this.props.location.pathname ===
-                        `${this.props.match.url}/submitted`
-                      }
-                    >
-                      <NavLink to={`${this.props.match.url}/submitted`}>{`${
-                        this.props.profile.submittedTotal
-                      } Submitted`}</NavLink>
-                    </Menu.Item>
-
-                    <Menu.Item
-                      name="made"
-                      active={
-                        this.props.location.pathname ===
-                        `${this.props.match.url}/made`
-                      }
-                    >
-                      <NavLink to={`${this.props.match.url}/made`}>{`${
-                        this.props.profile.madeTotal
-                      } Made`}</NavLink>
-                    </Menu.Item>
-                  </Menu>
-                </Segment>
-              </Grid.Column>
+              <ProfileNavigation
+                match={this.props.match}
+                location={this.props.location}
+                upvotesTotal={this.props.profile.upvotesTotal}
+                submittedTotal={this.props.profile.submittedTotal}
+                madeTotal={this.props.profile.madeTotal}
+              />
               <React.Fragment>
                 <Switch>
                   <Route
@@ -151,7 +123,9 @@ class Profile extends Component {
               <Grid.Column width={4}>
                 <Card>
                   <Card.Content>
-                    <Header as="h5">SHARE YOUR PROFILE</Header>
+                    <Header as="h5">
+                      SHARE {isUser ? 'YOUR' : 'THIS'} PROFILE
+                    </Header>
                   </Card.Content>
                   <Card.Content>
                     <Menu widths={2} fluid secondary borderless>
