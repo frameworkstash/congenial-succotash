@@ -20,10 +20,10 @@ class Main extends Component {
         <div ref={this.handleContextRef}>
           <Grid padded="vertically">
             <Grid.Row>
-              <Grid.Column width={3}>
+              {/* <Grid.Column width={3}>
                 <Navigation contextRef={contextRef} />
-              </Grid.Column>
-              <Grid.Column width={8}>
+              </Grid.Column> */}
+              <Grid.Column width={11}>
                 <PrimaryContent />
               </Grid.Column>
               <Grid.Column width={5}>
