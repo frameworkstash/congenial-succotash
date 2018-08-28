@@ -51,10 +51,10 @@ const Auth = {
 
 const Articles = {
   favoritedBy: username =>
-    requests.get(`/tutorials?upvoted=${encode(username)}`),
+    requests.get(`/activity?upvoted=${encode(username)}`),
   submittedBy: username =>
-    requests.get(`/tutorials?submitted=${encode(username)}`),
-  madeBy: username => requests.get(`/tutorials?made=${encode(username)}`)
+    requests.get(`/activity?submitted=${encode(username)}`),
+  madeBy: username => requests.get(`/activity?made=${encode(username)}`)
 };
 
 const Profile = {
