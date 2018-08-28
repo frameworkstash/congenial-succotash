@@ -2,7 +2,7 @@ import { REQUEST_POSTS, RECEIVE_POSTS } from '../constants/actionTypes';
 
 const initialState = {
   isFetching: false,
-  data: {}
+  data: []
 };
 
 export default (state = initialState, action) => {

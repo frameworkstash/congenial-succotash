@@ -10,7 +10,7 @@ export const requestPosts = topic => ({
 export const receivePosts = (topic, json) => ({
   type: types.RECEIVE_POSTS,
   topic,
-  response: normalize(json.data.tutorials, schema.arrayOfTutorials),
+  response: json.data.tutorials,
   receivedAt: Date.now()
 });
 
