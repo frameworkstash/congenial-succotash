@@ -19,10 +19,6 @@ class PrimaryContent extends Component {
     dispatch(openModal('MODAL_TYPE_POST'));
   };
 
-  getAllPosts = state => {
-    return state.result.map(id => state.entities.tutorials[id]);
-  };
-
   render() {
     const { posts } = this.props;
 
@@ -30,32 +26,36 @@ class PrimaryContent extends Component {
       return <p>Loading...</p>;
     }
 
-    if (!posts.entities) {
+    if (!posts) {
       return <p>Uh-oh! No content here :(</p>;
     }
 
     return (
       <div>
-        <Segment.Group>
-          <Header as="h2" attached="top">
-            Today
-          </Header>
-          {this.getAllPosts(posts).map(post => {
-            return (
-              <PostCard
-                key={post.id}
-                id={post.id}
-                title={post.title}
-                description={post.description}
-                skillLevel={post.skill_level}
-                totalComments={post.total_comments}
-                totalLikes={post.total_likes}
-                upvoted={post.upvoted}
-                openModal={this.openModal}
-              />
-            );
-          })}
-        </Segment.Group>
+        {Object.keys(posts).map(date => {
+          return (
+            <Segment.Group key={date}>
+              <Header as="h2" attached="top">
+                {date}
+              </Header>
+              {posts[date].map(post => {
+                return (
+                  <PostCard
+                    key={post.id}
+                    id={post.id}
+                    title={post.title}
+                    description={post.description}
+                    skillLevel={post.skill_level}
+                    totalComments={post.total_comments}
+                    totalLikes={post.total_likes}
+                    upvoted={post.upvoted}
+                    openModal={this.openModal}
+                  />
+                );
+              })}
+            </Segment.Group>
+          );
+        })}
       </div>
     );
   }
