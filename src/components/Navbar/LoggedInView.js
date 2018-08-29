@@ -10,14 +10,16 @@ const LoggedInView = props => {
       <React.Fragment>
         <Menu.Menu position="right">
           <Menu.Item>
-            <Popup
-              trigger={<Icon name="add" size="large" color="grey" link />}
-              content="Post a tutorial"
-              position="bottom center"
-              size="mini"
-              inverted
-              hideOnScroll
-            />
+            <Link to="/posts/new">
+              <Popup
+                trigger={<Icon name="add" size="large" color="grey" link />}
+                content="Post a tutorial"
+                position="bottom center"
+                size="mini"
+                inverted
+                hideOnScroll
+              />
+            </Link>
           </Menu.Item>
           <Menu.Item fitted="horizontally">
             <Dropdown
