@@ -11,6 +11,7 @@ import DocumentTitle from 'react-document-title';
 import NavbarRoot from './containers/NavbarRoot';
 import ModalRoot from './containers/ModalRoot';
 import Home from './components/Home';
+import NewPostForm from './components/NewPostForm';
 import Profile from './components/Profile';
 import ProfileSettings from './components/ProfileSettings';
 import PrivateRoute from './containers/PrivateRoute';
@@ -56,6 +57,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/@:username" component={Profile} />
+              <PrivateRoute exact path="/posts/new" component={NewPostForm} />
               <PrivateRoute
                 exact
                 path="/my/settings/edit"
